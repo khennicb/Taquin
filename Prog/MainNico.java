@@ -1,10 +1,13 @@
 package Prog;
 
 import Prog.IHM.Console;
+import Prog.IHM.IHM;
 
 public class MainNico {
-   
+    static IHM IHM;
+    
     public static void main(String[] args) {
+        /*
         int[][] tab = {
             {1, 2},
             {3, 4}
@@ -12,8 +15,17 @@ public class MainNico {
         
         EtatPlateau test = new EtatPlateau("HBBHGD", tab);
         
-        Console OUT = new Console();
-        OUT.afficherEtat(test);
+        IHM = new Console();
+        IHM.afficherEtat(test);
+        */
+        
+        int[][] tab = {
+            {1, 2},
+            {3, 4}
+        };
+        EtatPlateau test = new EtatPlateau("HBBHGD", tab);
+        
+        
     }
     
 }
