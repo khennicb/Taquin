@@ -27,13 +27,17 @@ public class Fenetre extends JFrame implements IHM{
         };
         
         addWindowListener(l);
-        setSize(200, 200);
+        setSize(800, 600);
         setVisible(true);
     }
 
     @Override
     public void afficherEtat(EtatPlateau etat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < this.getHeight(); i++) {
+            for (int j = 0; j < this.getWidth(); j++) {
+                
+            }
+        }
     }
     
 }
