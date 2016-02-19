@@ -2,7 +2,7 @@ package Prog.IHM;
 
 import Prog.EtatPlateau;
 
-public class Console extends IHM {
+public class Console implements IHM {
 
     @Override
     public void afficherEtat(EtatPlateau etat) {
