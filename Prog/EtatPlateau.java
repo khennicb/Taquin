@@ -2,8 +2,8 @@ package Prog;
 
 public class EtatPlateau {
 
-    private int[][] etatFinal; 
-    
+    private int[][] etatFinal;
+
     private String listeMouvements;
     private int[][] listeTuiles;
     private int dimension;
@@ -12,7 +12,7 @@ public class EtatPlateau {
         this.listeMouvements = listeMouvements;
         this.listeTuiles = listeTuiles;
         this.dimension = dimension;
-        this.etatFinal=etatFinal;
+        this.etatFinal = etatFinal;
     }
 
     public String getListeMouvements() {
@@ -70,7 +70,7 @@ public class EtatPlateau {
     *   Si le déplacement est impossible, renvoie null.
     *
      */
-    public EtatPlateau getEtatPlateauApresAction(Deplacement deplacement) { 
+    public EtatPlateau getEtatPlateauApresAction(Deplacement deplacement) {
         int[][] nouvelleListeTuiles;
         nouvelleListeTuiles = new int[dimension][dimension];
 
@@ -126,7 +126,6 @@ public class EtatPlateau {
 
         int cout = 0; // t'as vu, je peux appeler ma variable 'cout' parce qu'on est pas en C++  :P
 
-        
         //Pour chaque tuile dans la tuile dans la solution final
         for (int col = 0; col < dimension; col++) {
             for (int ligne = 0; ligne < dimension; ligne++) {
@@ -138,12 +137,29 @@ public class EtatPlateau {
                         if (etatFinal[col][ligne] == listeTuiles[i][j]) {
                             cout = cout + Math.abs(j - i);
                         }
-                        
+
                     }
                 }
-                
+
             }
         }
         return cout;
     }
+
+    
+    /*
+    *   Renvoie une chaine représentant la lecture des tuiles du plateau de gauche à droite et de bas en haut.
+    *   Les numéros des tuiles sont séparés par des espaces.
+    */
+    public String toString() {
+        String s = "";
+
+        for (int j = 0; j < dimension; j++) {
+            for (int i = 0; i < dimension; i++) {
+                s = s + Integer.toString(listeTuiles[i][j]) +" ";
+            }
+        }
+        return s;
+    }
+
 }
