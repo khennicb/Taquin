@@ -35,7 +35,10 @@ public class Fenetre extends JFrame implements IHM{
     public void afficherEtat(EtatPlateau etat) {
         for (int i = 0; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
-                
+                // La taille des cases doivent etre adaptées à la largeur de la fenetre
+                // Les cases doivent etre des boutons non clicable
+                // Seuls les max(4) cases voisines de la case zero doivent etre clicable
+                // La case zero est elle un bouton ?
             }
         }
     }
