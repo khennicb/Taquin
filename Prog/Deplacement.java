@@ -10,5 +10,16 @@ package Prog;
  * @author ben
  */
 public enum Deplacement {
+    Haut("H"), Bas("B"), Gauche("G"), Droite("D");
+    
+    private String lettre = "";
+    
+    Deplacement(String lettre) {
+        this.lettre = lettre;
+    }
+    
+    public String toString(){
+        return lettre;
+    }
     
 }

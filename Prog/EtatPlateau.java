@@ -2,14 +2,17 @@ package Prog;
 
 public class EtatPlateau {
 
+    private int[][] etatFinal; 
+    
     private String listeMouvements;
     private int[][] listeTuiles;
     private int dimension;
 
-    public EtatPlateau(String listeMouvements, int[][] listeTuiles, int dimension) {
+    public EtatPlateau(String listeMouvements, int[][] listeTuiles, int dimension, int[][] etatFinal) {
         this.listeMouvements = listeMouvements;
         this.listeTuiles = listeTuiles;
         this.dimension = dimension;
+        this.etatFinal=etatFinal;
     }
 
     public String getListeMouvements() {
@@ -28,25 +31,24 @@ public class EtatPlateau {
         this.listeTuiles = listeTuiles;
     }
 
-    public EtatPlateau getEtatFinal() { // A IMPLEMENTER
-        return null;
+    public int[][] getEtatFinal() { // A IMPLEMENTER
+        return etatFinal;
     }
 
     /*
      * Compare les prochains états possibles au score proposer et renvoie celui qui dépasse le plus le score  
      * Si aucun ne dépasse le score proposé, renvoie null.
-    */
+     */
     public EtatPlateau getMeilleurProchainEtat(int meilleurScore) {
-        EtatPlateau etatFinal = getEtatFinal();
+        int[][] etatFinal = getEtatFinal();
         EtatPlateau meilleurSolution = null;
-        char[] mouvements = {'H', 'B', 'G', 'D'};
 
         EtatPlateau concurent;
         int scoreConcurent;
-        for (char mouv : mouvements) { // pour chaque mouvement possible
+        for (Deplacement mouv : Deplacement.values()) { // pour chaque mouvement possible
             concurent = getEtatPlateauApresAction(mouv);
             if (concurent != null) {
-                scoreConcurent = concurent.getBorneMeilleureSolution(etatFinal);
+                scoreConcurent = concurent.getBorneMeilleureSolution();
                 if (scoreConcurent > meilleurScore) {
                     meilleurScore = scoreConcurent;
                     meilleurSolution = concurent;
@@ -68,87 +70,78 @@ public class EtatPlateau {
     *   Si le déplacement est impossible, renvoie null.
     *
      */
-    public EtatPlateau getEtatPlateauApresAction(char deplacement) { // A MODIFIER avec un type énuméré pour les déplacement.
+    public EtatPlateau getEtatPlateauApresAction(Deplacement deplacement) { 
         int[][] nouvelleListeTuiles;
         nouvelleListeTuiles = new int[dimension][dimension];
+
+        // On cherche la case '0'
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
-                // On cherche la case '0'
+                if (nouvelleListeTuiles[i][j] == 0) { // Si la case est bien '0'
 
-                switch (deplacement) {
-                    case 'H':
-                        if (nouvelleListeTuiles[i][j] == 0) {
+                    switch (deplacement.toString().charAt(0)) {
+                        case 'H':
                             if (j == 0) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j - 1];
                                 nouvelleListeTuiles[i][j - 1] = 0;
-                                return new EtatPlateau(listeMouvements + "H", nouvelleListeTuiles, dimension);
                             }
-                        }
-                        break;
-                    case 'B':
-                        if (nouvelleListeTuiles[i][j] == 0) {
+
+                        case 'B':
                             if (j == dimension - 1) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j + 1];
                                 nouvelleListeTuiles[i][j + 1] = 0;
-                                return new EtatPlateau(listeMouvements + "B", nouvelleListeTuiles, dimension);
                             }
-                        }
 
-                        break;
-                    case 'G':
-                        if (nouvelleListeTuiles[i][j] == 0) {
+                        case 'G':
                             if (i == 0) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i - 1][j] = nouvelleListeTuiles[i - 1][j];
                                 nouvelleListeTuiles[i - 1][j] = 0;
-                                return new EtatPlateau(listeMouvements + "G", nouvelleListeTuiles, dimension);
                             }
-                        }
 
-                        break;
-                    case 'D':
-                        if (nouvelleListeTuiles[i][j] == 0) {
+                        case 'D':
                             if (i == dimension - 1) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i + 1][j] = nouvelleListeTuiles[i][j];
                                 nouvelleListeTuiles[i + 1][j] = 0;
-                                return new EtatPlateau(listeMouvements + "D", nouvelleListeTuiles, dimension);
                             }
-                        }
 
-                        break;
-                    default:
-                        return null;
+                        default:
+                            return null;
+                    }
                 }
-
             }
         }
-        return null; //cas impossible
+        return new EtatPlateau(listeMouvements + deplacement, nouvelleListeTuiles, dimension, etatFinal);
 
     }
 
-    public int getBorneMeilleureSolution(EtatPlateau solution) { // A OPTIMISER
+    public int getBorneMeilleureSolution() { // A OPTIMISER
 
-        int cout = 0;
+        int cout = 0; // t'as vu, je peux appeler ma variable 'cout' parce qu'on est pas en C++  :P
 
-        int[][] sol = solution.getListeTuiles();
+        
+        //Pour chaque tuile dans la tuile dans la solution final
         for (int col = 0; col < dimension; col++) {
             for (int ligne = 0; ligne < dimension; ligne++) {
-                //on a séléctionné la tuile dans la solution final
+
+                // on cherche la même tuile dans l'état du plateau (this)
                 for (int i = 0; i < dimension; i++) {
                     for (int j = 0; j < dimension; j++) {
-                        // on cherche la même tuile dans l'état du plateau
-                        if (sol[col][ligne] == listeTuiles[i][j]) {
+                        // une fois trouvé, on ajoute au cout sa distance par rapport à sa place final.
+                        if (etatFinal[col][ligne] == listeTuiles[i][j]) {
                             cout = cout + Math.abs(j - i);
                         }
+                        
                     }
                 }
+                
             }
         }
         return cout;
