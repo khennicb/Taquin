@@ -48,6 +48,19 @@ public class EtatPlateau {
         
     }
     
+    public boolean deplacementPossible(Deplacement d) {
+        
+        if (d == Deplacement.Bas && coordZero[0] == listeTuiles.length-1 )
+            return false;
+        if (d == Deplacement.Haut && coordZero[0] == 0 )
+            return false;
+        if (d == Deplacement.Droite && coordZero[1] == listeTuiles.length-1 )
+            return false;
+        if (d == Deplacement.Gauche && coordZero[1] == 0 )
+            return false;
+        
+        return true;
+    }
     //--- Getters et setters
     
     public String getListeMouvements() {
@@ -72,7 +85,7 @@ public class EtatPlateau {
 
     
     
-    public int getMeilleurScoreManatthan(){
+    public int getScoreManatthan(){
         return getBorneMeilleureSolution() + getListeMouvements().length();        
     }
     
@@ -90,7 +103,7 @@ public class EtatPlateau {
         for (Deplacement mouv : Deplacement.values()) { // pour chaque mouvement possible
             concurent = getEtatPlateauApresAction(mouv);
             if (concurent != null) {
-                scoreConcurent = concurent.getMeilleurScoreManatthan();
+                scoreConcurent = concurent.getScoreManatthan();
                 if (scoreConcurent > meilleurScore) {
                     meilleurScore = scoreConcurent;
                     meilleurSolution = concurent;
