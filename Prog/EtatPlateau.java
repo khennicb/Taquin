@@ -146,13 +146,13 @@ public class EtatPlateau {
                             break;
 
                         case 'H':
-                                nouvelleListeTuiles[i - 1][j] = nouvelleListeTuiles[i - 1][j];
-                                nouvelleListeTuiles[i - 1][j] = 0;
+                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i + 1][j];
+                                nouvelleListeTuiles[i + 1][j] = 0;
                             break;
 
                         case 'B':
-                                nouvelleListeTuiles[i + 1][j] = nouvelleListeTuiles[i][j];
-                                nouvelleListeTuiles[i + 1][j] = 0;
+                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i-1][j];
+                                nouvelleListeTuiles[i - 1][j] = 0;
                             break;
 
                         default:
