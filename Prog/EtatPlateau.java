@@ -6,12 +6,10 @@ public class EtatPlateau {
 
     private String listeMouvements;
     private int[][] listeTuiles;
-    private int dimension;
 
-    public EtatPlateau(String listeMouvements, int[][] listeTuiles, int dimension, int[][] etatFinal) {
+    public EtatPlateau(String listeMouvements, int[][] listeTuiles, int[][] etatFinal) {
         this.listeMouvements = listeMouvements;
         this.listeTuiles = listeTuiles;
-        this.dimension = dimension;
         this.etatFinal = etatFinal;
     }
 
@@ -72,11 +70,11 @@ public class EtatPlateau {
      */
     public EtatPlateau getEtatPlateauApresAction(Deplacement deplacement) {
         int[][] nouvelleListeTuiles;
-        nouvelleListeTuiles = new int[dimension][dimension];
+        nouvelleListeTuiles = new int[listeTuiles.length][listeTuiles.length];
 
         // On cherche la case '0'
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
+        for (int i = 0; i < listeTuiles.length; i++) {
+            for (int j = 0; j < listeTuiles.length; j++) {
                 if (nouvelleListeTuiles[i][j] == 0) { // Si la case est bien '0'
 
                     switch (deplacement.toString().charAt(0)) {
@@ -89,7 +87,7 @@ public class EtatPlateau {
                             }
 
                         case 'B':
-                            if (j == dimension - 1) {
+                            if (j == listeTuiles.length - 1) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j + 1];
@@ -105,7 +103,7 @@ public class EtatPlateau {
                             }
 
                         case 'D':
-                            if (i == dimension - 1) {
+                            if (i == listeTuiles.length - 1) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i + 1][j] = nouvelleListeTuiles[i][j];
@@ -118,7 +116,7 @@ public class EtatPlateau {
                 }
             }
         }
-        return new EtatPlateau(listeMouvements + deplacement, nouvelleListeTuiles, dimension, etatFinal);
+        return new EtatPlateau(listeMouvements + deplacement, nouvelleListeTuiles, etatFinal);
 
     }
 
@@ -127,12 +125,12 @@ public class EtatPlateau {
         int cout = 0; // t'as vu, je peux appeler ma variable 'cout' parce qu'on est pas en C++  :P
 
         //Pour chaque tuile dans la tuile dans la solution final
-        for (int col = 0; col < dimension; col++) {
-            for (int ligne = 0; ligne < dimension; ligne++) {
+        for (int col = 0; col < listeTuiles.length; col++) {
+            for (int ligne = 0; ligne < listeTuiles.length; ligne++) {
 
                 // on cherche la même tuile dans l'état du plateau (this)
-                for (int i = 0; i < dimension; i++) {
-                    for (int j = 0; j < dimension; j++) {
+                for (int i = 0; i < listeTuiles.length; i++) {
+                    for (int j = 0; j < listeTuiles.length; j++) {
                         // une fois trouvé, on ajoute au cout sa distance par rapport à sa place final.
                         if (etatFinal[col][ligne] == listeTuiles[i][j]) {
                             cout = cout + Math.abs(j - i);
@@ -154,8 +152,8 @@ public class EtatPlateau {
     public String toString() {
         String s = "";
 
-        for (int j = 0; j < dimension; j++) {
-            for (int i = 0; i < dimension; i++) {
+        for (int j = 0; j < listeTuiles.length; j++) {
+            for (int i = 0; i < listeTuiles.length; i++) {
                 s = s + Integer.toString(listeTuiles[i][j]) +" ";
             }
         }
