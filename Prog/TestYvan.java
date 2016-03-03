@@ -10,12 +10,12 @@ public class TestYvan {
         
         int[][][] plateau = fichier.readPlateau("testFile.txt");
         
-        EtatPlateau test1 = new EtatPlateau("", plateau[0]);
-        EtatPlateau test2 = new EtatPlateau("", plateau[1]);
+        /*EtatPlateau test1 = new EtatPlateau("", plateau[0], plateau[1]);
+        EtatPlateau test2 = new EtatPlateau("", plateau[1], plateau[1]);
         
         Console OUT = new Console();
         OUT.afficherEtat(test1);
-        OUT.afficherEtat(test2);
+        OUT.afficherEtat(test2);*/
     }
     
 }

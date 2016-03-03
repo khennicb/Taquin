@@ -7,15 +7,15 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class EntreeSortieFichier {
-    private String dossier;
+    private String dossierCarteInitial;
     
-    public EntreeSortieFichier(String dossier){
-        this.dossier=dossier;
+    public EntreeSortieFichier(String dossierCarteInitial){
+        this.dossierCarteInitial=dossierCarteInitial;
     }
     
     /**
      * 
-     * Lit un fichier et rend les tableau associer
+     * Lit un fichier et rend les tableau associer. Il garantis qu'il y a UNE SEUL case vide (0)
      * @param filename nom du fichier dans Data
      * @return int[2][k][k] : Le 1er tableau est la configuration initial, le 2eme est la configuration final. 
      * @throws FileNotFoundException Est lever si le fichier est inexistant
@@ -25,7 +25,8 @@ public class EntreeSortieFichier {
         String[] valeurLigne;
         String ligne = null;
         int size;
-        BufferedReader br = new BufferedReader(new FileReader(dossier+File.separator+filename));    
+        int nbZero=0;
+        BufferedReader br = new BufferedReader(new FileReader(dossierCarteInitial+File.separator+filename));    
         
         try {
             ligne = br.readLine();
@@ -36,14 +37,31 @@ public class EntreeSortieFichier {
                 valeurLigne = ligne.split(" ");
                 for (int j=0;j<size;j++) {
                     retour[0][i][j] = Integer.valueOf(valeurLigne[j]);
+                    if (Integer.valueOf(valeurLigne[j])==0){
+                        nbZero++;
+                    }
                 }
             }
+            if (nbZero<1){
+                throw new ExceptionFormatFichier("Pas de case vide (0) trouvé sur le plateau initial");
+            } else if (nbZero>1){
+                throw new ExceptionFormatFichier("Trop de case vide (0) trouvé sur le plateau initial");
+            }
+            nbZero=0;
             for (int i=0;i<size;i++){
                 ligne = br.readLine();
                 valeurLigne = ligne.split(" ");
                 for (int j=0;j<size;j++) {
                     retour[1][i][j] = Integer.valueOf(valeurLigne[j]);
+                    if (Integer.valueOf(valeurLigne[j])==0){
+                        nbZero++;
+                    }
                 }
+            }
+            if (nbZero<1){
+                throw new ExceptionFormatFichier("Pas de case vide (0) trouvé sur le plateau initial");
+            } else if (nbZero>1){
+                throw new ExceptionFormatFichier("Trop de case vide (0) trouvé sur le plateau initial");
             }
         } catch (IOException e) {
             throw new ExceptionFormatFichier("Fichier trop court");
