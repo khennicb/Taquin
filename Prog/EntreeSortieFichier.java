@@ -26,20 +26,27 @@ public class EntreeSortieFichier {
         String ligne = null;
         int size;
         int nbZero=0;
+        int j,j2;
         BufferedReader br = new BufferedReader(new FileReader(dossierCarteInitial+File.separator+filename));    
         
         try {
-            ligne = br.readLine();
+            ligne = br.readLine().split(" ")[0];
             size = Integer.valueOf(ligne);
             retour = new int[2][size][size];
             for (int i=0;i<size;i++){
                 ligne = br.readLine();
                 valeurLigne = ligne.split(" ");
-                for (int j=0;j<size;j++) {
-                    retour[0][i][j] = Integer.valueOf(valeurLigne[j]);
-                    if (Integer.valueOf(valeurLigne[j])==0){
-                        nbZero++;
+                j=0;
+                j2=0;
+                while(j2<size) {
+                    if(!valeurLigne[j].equals("")){
+                        retour[0][i][j2] = Integer.valueOf(valeurLigne[j]);
+                        if (Integer.valueOf(valeurLigne[j])==0){
+                            nbZero++;
+                        }
+                        j2++;
                     }
+                    j++;
                 }
             }
             if (nbZero<1){
@@ -51,11 +58,17 @@ public class EntreeSortieFichier {
             for (int i=0;i<size;i++){
                 ligne = br.readLine();
                 valeurLigne = ligne.split(" ");
-                for (int j=0;j<size;j++) {
-                    retour[1][i][j] = Integer.valueOf(valeurLigne[j]);
-                    if (Integer.valueOf(valeurLigne[j])==0){
-                        nbZero++;
+                j=0;
+                j2=0;
+                while (j2<size) {
+                    if(!valeurLigne[j].equals("")){
+                        retour[1][i][j2] = Integer.valueOf(valeurLigne[j]);
+                        if (Integer.valueOf(valeurLigne[j])==0){
+                            nbZero++;
+                        }
+                        j2++;
                     }
+                    j++;
                 }
             }
             if (nbZero<1){

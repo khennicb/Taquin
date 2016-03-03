@@ -16,10 +16,15 @@ public class Solveur {
      * @return true si le jeu est fesable
      */
     public boolean estSolvable(){
-        int[][] plateau = plateauInitial.clone();
+        int[][] plateau;
         int deplacementCaseBlacne, nbPermutation;
-        int i1,i2,j1,j2, valeurTmp;
+        int i1,i2,j1,j2, valeurTmp; 
         
+        plateau = new int[plateauInitial.length][plateauInitial.length];
+        for (int i=0;i<plateauInitial.length;i++){
+            plateau[i] = plateauInitial[i].clone();
+        }
+
         //On cercher le nombre de deplacemment de la case vide
         i1=0;
         j1=0;
