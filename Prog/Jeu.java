@@ -36,23 +36,18 @@ public class Jeu {
         while (true/*!etat.finie()*/) {
             out.afficherEtat(etat);
             
-            String deplacement = out.listen();
+            String d = out.listen();
+            Deplacement deplacement;
             
+            if (d.equalsIgnoreCase("z")) { deplacement = Deplacement.Haut; }
+            else if (d.equalsIgnoreCase("s")) { deplacement = Deplacement.Bas; }
+            else if (d.equalsIgnoreCase("q")) { deplacement = Deplacement.Gauche; }
+            else { deplacement = Deplacement.Droite; }
             
-            if (deplacement.equalsIgnoreCase("z")) { 
-                etat = etat.getEtatPlateauApresAction(Deplacement.Haut); 
+            EtatPlateau tmp = etat.getEtatPlateauApresAction(deplacement); 
+            if (tmp == null) {
+                
             }
-            if (deplacement.equalsIgnoreCase("s")) { 
-                etat = etat.getEtatPlateauApresAction(Deplacement.Bas); 
-            }
-            if (deplacement.equalsIgnoreCase("q")) { 
-                etat = etat.getEtatPlateauApresAction(Deplacement.Gauche); 
-            }
-            if (deplacement.equalsIgnoreCase("d")) { 
-                etat = etat.getEtatPlateauApresAction(Deplacement.Droite); 
-            }
-            
-            
         }
     }
 }
