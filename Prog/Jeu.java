@@ -24,17 +24,34 @@ public class Jeu {
     }
     
     public void lancerLeJeu(){
-        int[][] tabCourrant = etat.getListeTuiles();
-        Solveur s = new Solveur(tabFinal, tabCourrant);
+//        int[][] tabCourrant = etat.getListeTuiles();
+        Solveur s = new Solveur(tabFinal, etat.getListeTuiles());
         if (!s.estSolvable()) {
             System.out.println("Cette grille n'est pas solvable.");
             return;
         }
                 
-        out.afficherEtat(etat);
+//        out.afficherEtat(etat);
         
-        while (true/*!etat.finie()*/) {            
+        while (true/*!etat.finie()*/) {
+            out.afficherEtat(etat);
+            
             String deplacement = out.listen();
+            
+            
+            if (deplacement.equalsIgnoreCase("z")) { 
+                etat = etat.getEtatPlateauApresAction(Deplacement.Haut); 
+            }
+            if (deplacement.equalsIgnoreCase("s")) { 
+                etat = etat.getEtatPlateauApresAction(Deplacement.Bas); 
+            }
+            if (deplacement.equalsIgnoreCase("q")) { 
+                etat = etat.getEtatPlateauApresAction(Deplacement.Gauche); 
+            }
+            if (deplacement.equalsIgnoreCase("d")) { 
+                etat = etat.getEtatPlateauApresAction(Deplacement.Droite); 
+            }
+            
             
         }
     }
