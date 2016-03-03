@@ -12,7 +12,23 @@ public class EtatPlateau {
         this.listeTuiles = listeTuiles;
         this.etatFinal = etatFinal;
     }
-
+    
+    public int getHauteur() {
+        return listeMouvements.length();
+    }
+    
+    public String toHashKey() {
+        String tmp = "";
+        
+        for(int[] ligne : listeTuiles)
+            for(int tuile : ligne)
+                tmp += tuile;
+        
+        return tmp;
+    }
+    
+    //--- Getters et setters
+    
     public String getListeMouvements() {
         return listeMouvements;
     }

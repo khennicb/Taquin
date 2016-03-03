@@ -23,7 +23,7 @@ public class MainNico {
             {1, 2},
             {3, 4}
         };
-        EtatPlateau test = new EtatPlateau("HBBHGD", tab);
+        //EtatPlateau test = new EtatPlateau("HBBHGD", tab);
         
         
     }
