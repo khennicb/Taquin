@@ -33,7 +33,7 @@ public class Jeu {
                 
 //        out.afficherEtat(etat);
         
-        while (true/*!etat.finie()*/) {
+        while (etat.estFinal()) {
             out.afficherEtat(etat);
             
             String d = out.listen();
@@ -44,9 +44,10 @@ public class Jeu {
             else if (d.equalsIgnoreCase("q")) { deplacement = Deplacement.Gauche; }
             else { deplacement = Deplacement.Droite; }
             
-            EtatPlateau tmp = etat.getEtatPlateauApresAction(deplacement); 
-            if (tmp == null) {
-                
+            if (etat.deplacementPossible(deplacement)) {
+                etat = etat.getEtatPlateauApresAction(deplacement); 
+            }else{
+                System.out.println("Ce déplacement est impossible.");
             }
         }
     }
