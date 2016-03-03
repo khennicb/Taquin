@@ -50,13 +50,13 @@ public class EtatPlateau {
     
     public boolean deplacementPossible(Deplacement d) {
         
-        if (d == Deplacement.Bas && coordZero[0] == listeTuiles.length-1 )
+        if (d == Deplacement.Bas && coordZero[0] == 0 )
             return false;
-        if (d == Deplacement.Haut && coordZero[0] == 0 )
+        if (d == Deplacement.Haut && coordZero[0] == listeTuiles.length-1 )
             return false;
-        if (d == Deplacement.Droite && coordZero[1] == listeTuiles.length-1 )
+        if (d == Deplacement.Droite && coordZero[1] == 0 )
             return false;
-        if (d == Deplacement.Gauche && coordZero[1] == 0 )
+        if (d == Deplacement.Gauche && coordZero[1] == listeTuiles.length-1 )
             return false;
         
         return true;
