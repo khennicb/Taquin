@@ -37,6 +37,17 @@ public class EtatPlateau {
         return tmp;
     }
     
+    public boolean estFinal(){
+        for (int i = 0; i < listeTuiles.length; i++) {
+            for (int j = 0; j < listeTuiles.length; j++) {
+                if (listeTuiles[i][j] != etatFinal[i][j])
+                    return false;
+            }
+        }
+        return true;
+        
+    }
+    
     //--- Getters et setters
     
     public String getListeMouvements() {
