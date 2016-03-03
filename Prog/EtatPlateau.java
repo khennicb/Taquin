@@ -130,13 +130,14 @@ public class EtatPlateau {
         nouvelleListeTuiles = new int[listeTuiles.length][listeTuiles.length];
 
         // On cherche la case '0'
-        for (int i = 0; i < listeTuiles.length; i++) {
-            for (int j = 0; j < listeTuiles.length; j++) {
-                if (nouvelleListeTuiles[i][j] == 0) { // Si la case est bien '0'
+        int i, j;
+        i = coordZero[0];
+        j = coordZero[1];
+                if (nouvelleListeTuiles[i][j] == 0) {
 
                     switch (deplacement.toString().charAt(0)) {
                         case 'H':
-                            if (j == 0) {
+                            if (j == listeTuiles.length - 1) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j - 1];
@@ -144,7 +145,7 @@ public class EtatPlateau {
                             }
 
                         case 'B':
-                            if (j == listeTuiles.length - 1) {
+                            if (j == 0) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j + 1];
@@ -152,7 +153,7 @@ public class EtatPlateau {
                             }
 
                         case 'G':
-                            if (i == 0) {
+                            if (i == listeTuiles.length - 1) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i - 1][j] = nouvelleListeTuiles[i - 1][j];
@@ -160,7 +161,7 @@ public class EtatPlateau {
                             }
 
                         case 'D':
-                            if (i == listeTuiles.length - 1) {
+                            if (i == 0) {
                                 return null;
                             } else {
                                 nouvelleListeTuiles[i + 1][j] = nouvelleListeTuiles[i][j];
@@ -171,8 +172,6 @@ public class EtatPlateau {
                             return null;
                     }
                 }
-            }
-        }
         return new EtatPlateau(listeMouvements + deplacement, nouvelleListeTuiles, etatFinal);
 
     }
