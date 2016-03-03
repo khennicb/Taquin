@@ -133,45 +133,34 @@ public class EtatPlateau {
         int i, j;
         i = coordZero[0];
         j = coordZero[1];
-                if (nouvelleListeTuiles[i][j] == 0) {
-
+                if (nouvelleListeTuiles[i][j] == 0 && deplacementPossible(deplacement)) {
                     switch (deplacement.toString().charAt(0)) {
-                        case 'H':
-                            if (j == listeTuiles.length - 1) {
-                                return null;
-                            } else {
+                        case 'D':
                                 nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j - 1];
                                 nouvelleListeTuiles[i][j - 1] = 0;
-                            }
-
-                        case 'B':
-                            if (j == 0) {
-                                return null;
-                            } else {
-                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j + 1];
-                                nouvelleListeTuiles[i][j + 1] = 0;
-                            }
+                            break;
 
                         case 'G':
-                            if (i == listeTuiles.length - 1) {
-                                return null;
-                            } else {
+                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j + 1];
+                                nouvelleListeTuiles[i][j + 1] = 0;
+                            break;
+
+                        case 'H':
                                 nouvelleListeTuiles[i - 1][j] = nouvelleListeTuiles[i - 1][j];
                                 nouvelleListeTuiles[i - 1][j] = 0;
-                            }
+                            break;
 
-                        case 'D':
-                            if (i == 0) {
-                                return null;
-                            } else {
+                        case 'B':
                                 nouvelleListeTuiles[i + 1][j] = nouvelleListeTuiles[i][j];
                                 nouvelleListeTuiles[i + 1][j] = 0;
-                            }
+                            break;
 
                         default:
                             return null;
                     }
-                }
+                } else
+                    return null;
+                
         return new EtatPlateau(listeMouvements + deplacement, nouvelleListeTuiles, etatFinal);
 
     }
