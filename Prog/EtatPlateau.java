@@ -3,14 +3,24 @@ package Prog;
 public class EtatPlateau {
 
     private int[][] etatFinal;
-
-    private String listeMouvements;
+    private String  listeMouvements;
     private int[][] listeTuiles;
+    private int[]   coordZero = new int[2];
+    
 
     public EtatPlateau(String listeMouvements, int[][] listeTuiles, int[][] etatFinal) {
         this.listeMouvements = listeMouvements;
         this.listeTuiles = listeTuiles;
         this.etatFinal = etatFinal;
+        
+        for (int i = 0; i < listeTuiles.length; i++) { // définit CoordZero
+            for (int j = 0; j < listeTuiles.length; j++) {
+                if(listeTuiles[i][j] == 0) {
+                    coordZero[0] = i;
+                    coordZero[1] = j;
+                }
+            }
+        }
     }
 
     public String getListeMouvements() {
@@ -33,8 +43,15 @@ public class EtatPlateau {
         return etatFinal;
     }
 
+    
+    
+    public int getMeilleurScoreManatthan(){
+        return getBorneMeilleureSolution() + getListeMouvements().length();        
+    }
+    
+    
     /*
-     * Compare les prochains états possibles au score proposer et renvoie celui qui dépasse le plus le score  
+     * Compare les prochains états possibles au score proposé et renvoie celui qui dépasse le plus le score  
      * Si aucun ne dépasse le score proposé, renvoie null.
      */
     public EtatPlateau getMeilleurProchainEtat(int meilleurScore) {
@@ -46,7 +63,7 @@ public class EtatPlateau {
         for (Deplacement mouv : Deplacement.values()) { // pour chaque mouvement possible
             concurent = getEtatPlateauApresAction(mouv);
             if (concurent != null) {
-                scoreConcurent = concurent.getBorneMeilleureSolution();
+                scoreConcurent = concurent.getMeilleurScoreManatthan();
                 if (scoreConcurent > meilleurScore) {
                     meilleurScore = scoreConcurent;
                     meilleurSolution = concurent;
@@ -154,7 +171,7 @@ public class EtatPlateau {
 
         for (int j = 0; j < listeTuiles.length; j++) {
             for (int i = 0; i < listeTuiles.length; i++) {
-                s = s + Integer.toString(listeTuiles[i][j]) +" ";
+                s = s + Integer.toString(listeTuiles[i][j]);
             }
         }
         return s;
