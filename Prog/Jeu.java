@@ -24,15 +24,19 @@ public class Jeu {
     }
     
     public void lancerLeJeu(){
-//        int[][] tabCourrant = etat.getListeTuiles();
+        System.out.println("Etat Initial : ");
+        out.afficherEtat(etat);
+        
+        System.out.println("Etat Final :");
+        out.afficheEtatFinal(etat);
+        System.out.println("");
+        
         Solveur s = new Solveur(tabFinal, etat.getListeTuiles());
         if (!s.estSolvable()) {
             System.out.println("Cette grille n'est pas solvable.");
             return;
         }
-                
-//        out.afficherEtat(etat);
-        
+                        
         while (etat.estFinal()) {
             out.afficherEtat(etat);
             
@@ -50,5 +54,7 @@ public class Jeu {
                 System.out.println("Ce déplacement est impossible.");
             }
         }
+        
+        System.out.println("Bravo ! Vous avez gagné.e !");
     }
 }
