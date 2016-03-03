@@ -24,6 +24,8 @@ public class Jeu {
     }
     
     public void lancerLeJeu(){
+        out.getExplications();
+        
         System.out.println("Etat Initial : ");
         out.afficherEtat(etat);
         
@@ -37,7 +39,7 @@ public class Jeu {
             return;
         }
                         
-        while (etat.estFinal()) {
+        while (!etat.estFinal()) {
             out.afficherEtat(etat);
             
             String d = out.listen();

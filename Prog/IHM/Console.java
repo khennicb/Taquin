@@ -48,4 +48,9 @@ public class Console implements IHM {
         //System.out.println("Vous avez saisi: " + d);
         return d;
     }
+    
+    public void getExplications(){
+        System.out.println("");
+        System.out.println("");
+    }
 }
