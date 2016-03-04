@@ -1,13 +1,13 @@
 package Prog;
 
-import Prog.IHM.Console;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TestYvan {
     
-    public static void main(String[] args) throws FileNotFoundException, ExceptionFormatFichier {
+    public static void main(String[] args) throws FileNotFoundException, ExceptionFormatFichier, IOException, InterruptedException {
         EntreeSortieFichier fichier = new EntreeSortieFichier("Data");
-        Console OUT = new Console();        
+//        Console OUT = new Console();        
         int[][][] plateau = fichier.readPlateau("sp0401.txt");
         
         EtatPlateau test1 = new EtatPlateau("", plateau[0], plateau[1]);
@@ -16,8 +16,12 @@ public class TestYvan {
         Solveur s = new Solveur(plateau[0], plateau[1]);
         System.out.println(s.estSolvable());
         
-        OUT.afficherEtat(test1);
-        OUT.afficherEtat(test2);
+//        OUT.afficherEtat(test1);
+ //       OUT.afficherEtat(test2);
+        
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+
     }
     
 }
