@@ -32,7 +32,7 @@ public class Jeu {
         
         out.afficheEtatFinal(etat);
         
-        Solveur s = new Solveur(tabFinal, etat.getListeTuiles());
+        Solveur s = new Solveur(etat);
         if (!s.estSolvable()) {
             out.afficheMessage("Cette grille n'est pas solvable.");
             return;
@@ -41,32 +41,35 @@ public class Jeu {
         out.waitForUser();
                         
         while (!etat.estFinal()) {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            out.clean();
             
             out.afficherEtat(etat);
             Deplacement deplacement;
+            boolean depPossible;
             
             do {                
-                String d = out.listen();
+                int d = out.listen();
                 
-                if (d.equalsIgnoreCase("z")) {
+                if (d==8) {
                     deplacement = Deplacement.Haut;
-                } else if (d.equalsIgnoreCase("s")) {
+                } else if (d==2) {
                     deplacement = Deplacement.Bas;
-                } else if (d.equalsIgnoreCase("q")) {
+                } else if (d==4) {
                     deplacement = Deplacement.Gauche;
                 } else {
                     deplacement = Deplacement.Droite;
                 }
                 
-                out.afficheMessage("Ce déplacement est impossible.");
-            } while (!etat.deplacementPossible(deplacement));
+                depPossible = etat.deplacementPossible(deplacement);
+                if (!depPossible) {
+                    out.afficheMessage("Ce déplacement est impossible.");
+                }
+            } while (!depPossible);
             
             etat = etat.getEtatPlateauApresAction(deplacement);
             
         }
         
-        out.felication();
+        out.felication(etat);
     }
 }

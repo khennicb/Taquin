@@ -11,20 +11,28 @@ import java.util.Stack;
  *
  * @author ben
  */
-public class SolveurVertical {
+public class SolveurVertical extends Solveur {
 
     HashmapEtats map;
     Stack<EtatPlateau> pile;
     EtatPlateau solution;
     boolean algoEnCours;
 
-    public SolveurVertical() {
+    public SolveurVertical(EtatPlateau etatInit) {
+        super(etatInit);
+        map = new HashmapEtats();
+        map.add(etatInit);
         pile = new Stack<>();
         solution = null;
     }
 
-    public EtatPlateau solve(EtatPlateau etatInit) {
+    public EtatPlateau solve() {
 
+        if (!estSolvable()){
+            System.out.println("Insolvable");
+            return null;
+        }
+        
         algoEnCours = true;
         pile.push(etatInit);
         EtatPlateau etatCourant;
@@ -37,8 +45,8 @@ public class SolveurVertical {
             generation(etatCourant);
 
             testSolution(etatCourant);
-
-            if (pile.isEmpty()) { // on vérifie que ce n'est pas fini
+            if (solution != null) { 
+            //if (pile.isEmpty()) { // on vérifie que ce n'est pas fini
                 algoEnCours = false;
             }
 
@@ -53,7 +61,7 @@ public class SolveurVertical {
      */
     private int generation(EtatPlateau e) {
         // si cette etat ne peut pas devenir une meilleure solution
-        if (solution != null && e.getScoreManatthan() >= solution.getScoreManatthan()) {
+        if (solution != null && e.getScoreManatthan()+1 >= solution.getScoreManatthan()) {
             return 0;
         }
         int count = 0;

@@ -6,8 +6,8 @@ public class MainTestVertical {
     
     public static void main(String[] args) throws FileNotFoundException, ExceptionFormatFichier {
         
-        String filename = "sp003.txt";
-        EntreeSortieFichier esF = new EntreeSortieFichier("");
+        String filename = "testFile.txt";
+        EntreeSortieFichier esF = new EntreeSortieFichier("Data");
         
         int[][][] plateau = esF.readPlateau(filename);
         
@@ -16,9 +16,10 @@ public class MainTestVertical {
         eFinal = plateau[1];
         
         
-        EtatPlateau test1 = new EtatPlateau("", plateau[0], plateau[1]);
+        EtatPlateau etatInitial= new EtatPlateau("", plateau[0], plateau[1]);
         
-        
+        SolveurVertical solveur = new SolveurVertical(etatInitial);
+        solveur.solve();
         
         
     }

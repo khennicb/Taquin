@@ -17,7 +17,7 @@ public class MainNono {
         
         EntreeSortieFichier fichier = new EntreeSortieFichier("Data");
         
-        int[][][] plateau = fichier.readPlateau("testFile.txt");
+        int[][][] plateau = fichier.readPlateau("sp000.txt");
         
         EtatPlateau test1 = new EtatPlateau("", plateau[0], plateau[1]);
         

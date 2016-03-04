@@ -16,6 +16,7 @@ public class Main {
         
         EntreeSortieFichier fichier;
         int[][][] plateau;
+        EtatPlateau etatPlateau;
         Solveur solveur;
         String map = null;
         String mode = null;
@@ -83,7 +84,7 @@ public class Main {
         if (map==null){
             File file = new File(pathData);
             File[] files = file.listFiles();
-            System.out.println("Quel carte voulez-vous choisir un nombre : ou le nom (dans le dossier "+pathData+") ? ");
+            System.out.println("Quel carte voulez-vous choisir : Taper un nombre ou le nom (dans le dossier "+pathData+") ? ");
             for (i=0;i<files.length;i++){
                 System.out.println(i+" - "+files[i].getName());
             }
@@ -101,17 +102,17 @@ public class Main {
         try {
             plateau = fichier.readPlateau(map);
         } catch (FileNotFoundException ex) {
-            System.out.println("Fichier non trouve");
+            System.out.println("Fichier non trouvé");
             return;
         } catch (ExceptionFormatFichier ex) {
             System.out.println("Fichier au mauvais format");
             return;
         }
-        solveur = new Solveur(plateau[0], plateau[1]);
+        etatPlateau = new EtatPlateau("", plateau[0], plateau[1]);
+        solveur = new Solveur(etatPlateau);
         if (solveur.estSolvable()) {
             if ("Jeux".equals(mode)){
-                EtatPlateau ep = new EtatPlateau("", plateau[0], plateau[1]);
-                Jeu jeu = new Jeu(ep);
+                Jeu jeu = new Jeu(etatPlateau);
                 jeu.lancerLeJeu();
             } else {
                 //TO DO
