@@ -3,66 +3,72 @@ package Prog;
 public class EtatPlateau {
 
     private int[][] etatFinal;
-    private String  listeMouvements;
+    private String listeMouvements;
     private int[][] listeTuiles;
-    private int[]   coordZero = new int[2];
-    
+    private int[] coordZero = new int[2];
 
     public EtatPlateau(String listeMouvements, int[][] listeTuiles, int[][] etatFinal) {
         this.listeMouvements = listeMouvements;
         this.listeTuiles = listeTuiles;
         this.etatFinal = etatFinal;
-        
+
         for (int i = 0; i < listeTuiles.length; i++) { // définit CoordZero
             for (int j = 0; j < listeTuiles.length; j++) {
-                if(listeTuiles[i][j] == 0) {
+                if (listeTuiles[i][j] == 0) {
                     coordZero[0] = i;
                     coordZero[1] = j;
                 }
             }
         }
     }
-    
+
     public int getHauteur() {
         return listeMouvements.length();
     }
-    
+
     public String toHashKey() {
         String tmp = "";
-        
-        for(int[] ligne : listeTuiles)
-            for(int tuile : ligne)
+
+        for (int[] ligne : listeTuiles) {
+            for (int tuile : ligne) {
                 tmp += tuile;
-        
+            }
+        }
+
         return tmp;
     }
-    
-    public boolean estFinal(){
+
+    public boolean estFinal() {
         for (int i = 0; i < listeTuiles.length; i++) {
             for (int j = 0; j < listeTuiles.length; j++) {
-                if (listeTuiles[i][j] != etatFinal[i][j])
+                if (listeTuiles[i][j] != etatFinal[i][j]) {
                     return false;
+                }
             }
         }
         return true;
-        
+
     }
-    
+
     public boolean deplacementPossible(Deplacement d) {
-        
-        if (d == Deplacement.Bas && coordZero[0] == 0 )
+
+        if (d == Deplacement.Bas && coordZero[0] == 0) {
             return false;
-        if (d == Deplacement.Haut && coordZero[0] == listeTuiles.length-1 )
+        }
+        if (d == Deplacement.Haut && coordZero[0] == listeTuiles.length - 1) {
             return false;
-        if (d == Deplacement.Droite && coordZero[1] == 0 )
+        }
+        if (d == Deplacement.Droite && coordZero[1] == 0) {
             return false;
-        if (d == Deplacement.Gauche && coordZero[1] == listeTuiles.length-1 )
+        }
+        if (d == Deplacement.Gauche && coordZero[1] == listeTuiles.length - 1) {
             return false;
-        
+        }
+
         return true;
     }
     //--- Getters et setters
-    
+
     public String getListeMouvements() {
         return listeMouvements;
     }
@@ -83,19 +89,22 @@ public class EtatPlateau {
         return etatFinal;
     }
 
-    public int getScoreManatthan() { return getF(); }  
-    public int getF(){
-        return getH()+getG();
+    public int getScoreManatthan() {
+        return getF();
     }
-    
-    public int getH(){
+
+    public int getF() {
+        return getH() + getG();
+    }
+
+    public int getH() {
         return getBorneMeilleureSolution();
     }
-    
-    public int getG(){
+
+    public int getG() {
         return getListeMouvements().length();
     }
-    
+
     /*
      * Compare les prochains états possibles au score proposé et renvoie celui qui dépasse le plus le score  
      * Si aucun ne dépasse le score proposé, renvoie null.
@@ -134,43 +143,44 @@ public class EtatPlateau {
     public EtatPlateau getEtatPlateauApresAction(Deplacement deplacement) {
         int[][] nouvelleListeTuiles;
         nouvelleListeTuiles = new int[listeTuiles.length][listeTuiles.length];
-        
+
         for (int i = 0; i < listeTuiles.length; i++) {
-            nouvelleListeTuiles[i] = listeTuiles[i].clone();            
+            nouvelleListeTuiles[i] = listeTuiles[i].clone();
         }
 
         // On cherche la case '0'
         int i, j;
         i = coordZero[0];
         j = coordZero[1];
-                if (nouvelleListeTuiles[i][j] == 0 && deplacementPossible(deplacement)) {
-                    switch (deplacement.toString().charAt(0)) {
-                        case 'D':
-                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j - 1];
-                                nouvelleListeTuiles[i][j - 1] = 0;
-                            break;
+        if (nouvelleListeTuiles[i][j] == 0 && deplacementPossible(deplacement)) {
+            switch (deplacement.toString().charAt(0)) {
+                case 'D':
+                    nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j - 1];
+                    nouvelleListeTuiles[i][j - 1] = 0;
+                    break;
 
-                        case 'G':
-                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j + 1];
-                                nouvelleListeTuiles[i][j + 1] = 0;
-                            break;
+                case 'G':
+                    nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i][j + 1];
+                    nouvelleListeTuiles[i][j + 1] = 0;
+                    break;
 
-                        case 'H':
-                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i + 1][j];
-                                nouvelleListeTuiles[i + 1][j] = 0;
-                            break;
+                case 'H':
+                    nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i + 1][j];
+                    nouvelleListeTuiles[i + 1][j] = 0;
+                    break;
 
-                        case 'B':
-                                nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i-1][j];
-                                nouvelleListeTuiles[i - 1][j] = 0;
-                            break;
+                case 'B':
+                    nouvelleListeTuiles[i][j] = nouvelleListeTuiles[i - 1][j];
+                    nouvelleListeTuiles[i - 1][j] = 0;
+                    break;
 
-                        default:
-                            return null;
-                    }
-                } else
+                default:
                     return null;
-                
+            }
+        } else {
+            return null;
+        }
+
         return new EtatPlateau(listeMouvements + deplacement, nouvelleListeTuiles, etatFinal);
 
     }
@@ -182,17 +192,18 @@ public class EtatPlateau {
         //Pour chaque tuile dans la tuile dans la solution final
         for (int col = 0; col < listeTuiles.length; col++) {
             for (int ligne = 0; ligne < listeTuiles.length; ligne++) {
+                if (etatFinal[ligne][col] != 0) {
+                    // on cherche la même tuile dans l'état du plateau (this)
+                    for (int i = 0; i < listeTuiles.length; i++) {
+                        for (int j = 0; j < listeTuiles.length; j++) {
+                            // une fois trouvé, on ajoute au cout sa distance par rapport à sa place final.
+                            if (etatFinal[ligne][col] == listeTuiles[i][j]) {
+                                cout = cout + Math.abs(ligne - i);
+                                cout = cout + Math.abs(col - j);
 
-                // on cherche la même tuile dans l'état du plateau (this)
-                for (int i = 0; i < listeTuiles.length; i++) {
-                    for (int j = 0; j < listeTuiles.length; j++) {
-                        // une fois trouvé, on ajoute au cout sa distance par rapport à sa place final.
-                        if (etatFinal[col][ligne] == listeTuiles[i][j]) {
-                            cout = cout + Math.abs(ligne - i);
-                            cout = cout + Math.abs(col - j);
-                            
+                            }
+
                         }
-
                     }
                 }
 
@@ -201,11 +212,10 @@ public class EtatPlateau {
         return cout;
     }
 
-    
     /*
     *   Renvoie une chaine représentant la lecture des tuiles du plateau de gauche à droite et de bas en haut.
     *   Les numéros des tuiles sont séparés par des espaces.
-    */
+     */
     public String toString() {
         String s = "";
 
@@ -216,18 +226,18 @@ public class EtatPlateau {
         }
         return s;
     }
-    
+
     public void affiche() {
         System.out.println("- Etat " + this.getHauteur() + " : " + this.getListeMouvements());
-        
-        for(int[] ligne : this.getListeTuiles()) {
+
+        for (int[] ligne : this.getListeTuiles()) {
             System.out.print("- (\t");
-            for(int tuile : ligne) {
-                System.out.print(tuile+"\t");
+            for (int tuile : ligne) {
+                System.out.print(tuile + "\t");
             }
             System.out.print(")\n");
         }
-        
+
         System.out.println("------");
     }
 

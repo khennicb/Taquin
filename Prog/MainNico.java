@@ -20,15 +20,15 @@ public class MainNico {
         */
         
         int[][] debut = {
-            {4, 8, 7},
-            {6, 2, 3},
-            {1, 0, 5}
+            {1, 2, 3},
+            {4, 5, 0},
+            {7, 8, 6}
         };
         
         int[][] fin = {
             {1, 2, 3},
-            {3, 4, 5},
-            {6, 7, 0}
+            {4, 5, 6},
+            {7, 8, 0}
         };
         
         EtatPlateau init = new EtatPlateau("", debut, fin);

@@ -1,3 +1,4 @@
+
 package Prog;
 
 import java.io.FileNotFoundException;
@@ -16,7 +17,7 @@ public class MainTestVertical {
         eFinal = plateau[1];
         
         
-        EtatPlateau etatInitial= new EtatPlateau("", plateau[0], plateau[1]);
+        EtatPlateau etatInitial= new EtatPlateau("", eInit, eFinal);
         
         SolveurVertical solveur = new SolveurVertical(etatInitial);
         EtatPlateau sol = solveur.solve();
