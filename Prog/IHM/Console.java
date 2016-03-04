@@ -61,9 +61,18 @@ public class Console implements IHM {
         input.nextLine();
     }
     
-    public void getExplications(){
+    public void getExplications(EtatPlateau etat){
+        System.out.println("Bonjour. Voici l'état courant de votre grille : ");
+        afficherEtat(etat);
+        System.out.println("Le but du jeu est d'arriver à cette état final : ");
+        afficheEtatFinal(etat);
+        System.out.println("Pour cela, vous allez devoir déplacer les cases qui entoure le 0 pour qu'elles prennent la place de celui-ci.");
+        System.out.println("Entrez \"8\" ou \"z\" pour que la case sous le 0 monte et remplace le 0.");
+        System.out.println("Entrez \"2\" ou \"s\" pour que la case au dessus du 0 descende et remplace le 0.");
+        System.out.println("Entrez \"q\" ou \"4\" pour que la case à droite du 0 se déplace vers la gauche et remplace le 0.");
+        System.out.println("Entrez \"d\" ou \"6\" pour que la case à gauche du 0 se déplace vers la droite et remplace le 0.");
         System.out.println("");
-        System.out.println("");
+        System.out.print("Vous êtes pret ? ");
     }
     
     public void felication(EtatPlateau etat){
