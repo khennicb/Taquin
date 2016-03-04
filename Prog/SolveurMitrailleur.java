@@ -1,28 +1,27 @@
 package Prog;
 
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.Stack;
 
-public class SolveurBazooka extends Solveur {
+public class SolveurMitrailleur extends Solveur {
 
     HashmapEtats map;
-    Stack<EtatPlateau> pile;
+    LinkedBlockingQueue<EtatPlateau> pile;
     EtatPlateau solution;
     boolean algoEnCours;
 
     int profondeurLimite;
 
-    public SolveurBazooka(EtatPlateau etatInit) {
+    public SolveurMitrailleur(EtatPlateau etatInit) {
         super(etatInit);
         solution = null;
         longueurSolution = 0;
         nbSommetsVisite = 0;
         tailleMax = 0;
-        tempsCPUNS=0;
     }
 
     public EtatPlateau solve() {
 
-        
         tempsCPUNS= System.nanoTime();
         if (!estSolvable()) {
             System.out.println("Insolvable");
@@ -30,19 +29,17 @@ public class SolveurBazooka extends Solveur {
         }
 
         EtatPlateau etatCourant;
-        profondeurLimite = 5;
 
         while (solution == null) {
             //initialisation du solveur
             algoEnCours = true;
             map = new HashmapEtats();
             map.add(etatInit);
-            pile = new Stack<>();
-            pile.push(etatInit);
-
+            pile = new LinkedBlockingQueue<EtatPlateau>() ;
+            pile.add(etatInit);
             while (algoEnCours) {
-                etatCourant = pile.pop();
-
+                etatCourant = pile.poll();
+                
                 generation(etatCourant);
 
                 testSolution(etatCourant);
@@ -51,11 +48,7 @@ public class SolveurBazooka extends Solveur {
                     algoEnCours = false;
                 }
             }
-            //on retente avec un hauteur limite de 10 de plus
-            profondeurLimite += 10;
         }
-        
-        
         longueurSolution = solution.getListeMouvements().length();
         tailleMax = map.getListe().size();
         tempsCPUNS = System.nanoTime() - tempsCPUNS ;
@@ -70,8 +63,6 @@ public class SolveurBazooka extends Solveur {
         // si cette etat ne peut pas devenir une meilleure solution
         if (solution != null && e.getScoreManatthan() + 1 >= solution.getScoreManatthan()) {
             return 0;
-        } else if (e.getScoreManatthan() + 1 >= profondeurLimite) {
-            return 0;
         }
         int count = 0;
 
@@ -82,7 +73,7 @@ public class SolveurBazooka extends Solveur {
 
             // si le déplacement est possible et l'état généré est admissible
             if (etatGenere != null && map.add(etatGenere)) {
-                pile.push(etatGenere);
+                pile.add(etatGenere);
                 count++;
             }
         }

@@ -6,8 +6,8 @@ public class MainTestVertical {
     
     public static void main(String[] args) throws FileNotFoundException, ExceptionFormatFichier {
         
-        String filename = "sp003.txt";
-        EntreeSortieFichier esF = new EntreeSortieFichier("Data","Repport");
+        String filename = "sp009.txt";
+        EntreeSortieFichier esF = new EntreeSortieFichier("Data");
         
         int[][][] plateau = esF.readPlateau(filename);
         
@@ -18,7 +18,7 @@ public class MainTestVertical {
         
         EtatPlateau etatInitial= new EtatPlateau("", eInit, eFinal);
         
-        SolveurBazooka solveur = new SolveurBazooka(etatInitial);
+        SolveurMitrailleur solveur = new SolveurMitrailleur(etatInitial);
         EtatPlateau sol = solveur.solve();
         
         System.out.println("la solution est : " + sol.getListeMouvements());
