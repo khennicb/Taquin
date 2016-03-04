@@ -3,6 +3,11 @@ package Prog;
 public class Solveur {
 
     protected EtatPlateau etatInit;
+    protected String Solution;
+    protected int longueurSolution;
+    protected long tempsCPUNS;
+    protected int nbSommetsVisite;
+    protected int tailleMax;
     
     public Solveur(EtatPlateau etatInit) {
         this.etatInit = etatInit;
@@ -82,4 +87,24 @@ public class Solveur {
         
         return deplacementCaseBlacne%2==nbPermutation%2;
     }
+    
+        public String getSolution() {
+            return Solution;
+        }
+
+        public int getLongueurSolution() {
+            return longueurSolution;
+        }
+
+        public long getTempsCPUNS() {
+            return tempsCPUNS;
+        }
+
+        public int getNbSommetsVisite() {
+            return nbSommetsVisite;
+        }
+
+        public int getTailleMax() {
+            return tailleMax;
+        }
 }

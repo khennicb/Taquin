@@ -36,9 +36,9 @@ public class MainNico {
         
         IHM IHM = new Console();
         
-        SolveurSniper r = new SolveurSniper();
+        SolveurSniper r = new SolveurSniper(init);
         
-        EtatPlateau resultat = r.solve(init, end);
+        EtatPlateau resultat = r.solve();
         if(resultat != null){
             char[] cl = resultat.getListeMouvements().toCharArray();
             EtatPlateau current = init;

@@ -27,7 +27,12 @@ public class SolveurVertical extends Solveur {
     }
 
     public EtatPlateau solve() {
-
+        long time = System.nanoTime();
+        Solution = null;
+        longueurSolution = 0;
+        nbSommetsVisite = 0;
+        tailleMax = 0;
+        
         if (!estSolvable()){
             System.out.println("Insolvable");
             return null;
@@ -51,7 +56,8 @@ public class SolveurVertical extends Solveur {
             }
 
         }
-
+        
+        tempsCPUNS = System.nanoTime()-time;
         return solution;
     }
 

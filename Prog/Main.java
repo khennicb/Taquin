@@ -116,8 +116,9 @@ public class Main {
                 Jeu jeu = new Jeu(etatPlateau);
                 jeu.lancerLeJeu();
             } else if ("A*".equals(mode)){
-                //TO DO
-                System.err.println("Rien !!!!!!!!!!!!!!!!!!!!!!!");
+                SolveurSniper s = new SolveurSniper(etatPlateau);
+                EtatPlateau sol = s.solve();
+                System.out.println("la solution est : " + sol.getListeMouvements());
             } else if ("Profondeur".equals(mode)){
                 SolveurVertical s = new SolveurVertical(etatPlateau);
                 EtatPlateau sol = s.solve();

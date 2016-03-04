@@ -1,12 +1,17 @@
 package Prog;
 
-import Prog.IHM.IHM;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class SolveurSniper {
+public class SolveurSniper extends Solveur{
 
-    public EtatPlateau solve(EtatPlateau init, EtatPlateau fin){
+    public SolveurSniper(EtatPlateau etatInit) {
+        super(etatInit);
+    }
+
+    public EtatPlateau solve(){
+        EtatPlateau init = etatInit;
+        EtatPlateau fin = new EtatPlateau("", etatInit.getEtatFinal(), etatInit.getEtatFinal());
         
         ManhattanComparator comp = new ManhattanComparator();
         PriorityQueue<EtatPlateau> listeOuverte = new PriorityQueue<>(comp);
