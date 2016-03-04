@@ -88,11 +88,11 @@ public class Console implements IHM {
         afficherEtat(etat);
         System.out.println("Le but du jeu est d'arriver à cette état final : ");
         afficheEtatFinal(etat);
-        System.out.println("Pour cela, vous allez devoir déplacer les cases qui entoure le 0 pour qu'elles prennent la place de celui-ci.");
-        System.out.println("Entrez \"8\" ou \"Z\" pour que la case sous le 0 monte et remplace le 0.");
-        System.out.println("Entrez \"2\" ou \"S\" pour que la case au dessus du 0 descende et remplace le 0.");
-        System.out.println("Entrez \"4\" ou \"Q\" pour que la case à droite du 0 se déplace vers la gauche et remplace le 0.");
-        System.out.println("Entrez \"6\" ou \"D\" pour que la case à gauche du 0 se déplace vers la droite et remplace le 0.");
+        System.out.println("Pour cela, vous allez devoir déplacer les cases qui entoure la case vide pour qu'elles prennent la place de celle-ci.");
+        System.out.println("Entrez \"8\" ou \"Z\" pour que la case sous la case vide monte.");
+        System.out.println("Entrez \"2\" ou \"S\" pour que la case au dessus de la case vide descende.");
+        System.out.println("Entrez \"4\" ou \"Q\" pour que la case à droite de la case vide se déplace vers la gauche.");
+        System.out.println("Entrez \"6\" ou \"D\" pour que la case à gauche de la case vide se déplace vers la droite.");
         System.out.println("");
         System.out.println("Vous pouvez quitter à tout moment en tapant \"quitter\". Pour demander de l'aide, tapez \"help\".");
         System.out.println("");
