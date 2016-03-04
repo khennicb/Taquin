@@ -22,8 +22,9 @@ public class SolveurSniper {
         while(!listeOuverte.isEmpty()){
             EtatPlateau current = listeOuverte.poll();
             
-            if(sortie!=null) sortie.afficherEtat(current);
             System.out.println("f() = g() + h() = "+current.getG()+" + "+current.getH()+" = "+current.getF());
+            //if(sortie!=null) sortie.afficherEtat(current);
+            
             if(current.toHashKey().equals(fin.toHashKey())){
                 return current;
             }else{
@@ -43,16 +44,23 @@ class ManhattanComparator implements Comparator<EtatPlateau> {
     
     @Override
     public int compare(EtatPlateau etat1, EtatPlateau etat2) {
-        int manE1 = etat1.getH();
-        int manE2 = etat2.getH();
-        
-        if(manE1 < manE2){
-            return 1;
-        }else if(manE1 == manE2){
-            return 0; // ou retourner seulement le g de f=g+h
-        }else{
+        // -1 = etat2 sera moins prioritaire que etat 1, 0 = même niveau, 1 = plus prio
+        if(etat1.getF() < etat2.getF())
             return -1;
-        }
+        else if(etat1.getF() == etat2.getF()){
+            if(etat1.getH() < etat2.getH())
+                return -1;
+            else if (etat1.getH() == etat2.getH())
+                if(etat1.getG() < etat2.getG())
+                    return -1;
+                else if (etat1.getG() == etat2.getG())
+                    return 0;
+                else 
+                    return 1;
+            else 
+                return 1;
+        }else
+            return 1;
     }
     
 }
