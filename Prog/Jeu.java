@@ -25,13 +25,7 @@ public class Jeu {
     
     public void lancerLeJeu(){
         out.getExplications(etat);
-        /*
-        out.afficheMessage("Etat Initial : ");
-        out.afficherEtat(etat);
         
-        
-        out.afficheEtatFinal(etat);
-        */
         Solveur s = new Solveur(etat);
         if (!s.estSolvable()) {
             out.afficheMessage("Cette grille n'est pas solvable.");
