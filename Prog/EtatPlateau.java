@@ -83,12 +83,18 @@ public class EtatPlateau {
         return etatFinal;
     }
 
-    
-    
-    public int getScoreManatthan(){
-        return getBorneMeilleureSolution() + getListeMouvements().length();        
+    public int getScoreManatthan() { return getF(); }  
+    public int getF(){
+        return getH()+getG();
     }
     
+    public int getH(){
+        return getBorneMeilleureSolution();
+    }
+    
+    public int getG(){
+        return getListeMouvements().length();
+    }
     
     /*
      * Compare les prochains états possibles au score proposé et renvoie celui qui dépasse le plus le score  
