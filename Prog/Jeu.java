@@ -44,8 +44,8 @@ public class Jeu {
             out.afficheMessage("");
             out.afficherEtat(etat);
             
-            Deplacement deplacement = Deplacement.Bas;
-            boolean depPossible;
+            Deplacement deplacement = null;
+            boolean depPossible = false;
             String d;
             boolean erreur;
             
@@ -72,13 +72,17 @@ public class Jeu {
                 
                 checkForQuit(d);
                 
-                depPossible = etat.deplacementPossible(deplacement);
-                if (!depPossible && erreur) {
-                    out.afficheMessage("Ce déplacement est impossible.");
+                if (deplacement != null) {
+                    depPossible = etat.deplacementPossible(deplacement);
+                    if (!depPossible && erreur) {
+                        out.afficheMessage("Ce déplacement est impossible.");
+                    } 
                 }
             } while (!depPossible && erreur);
             
-            etat = etat.getEtatPlateauApresAction(deplacement);
+            if (deplacement != null) {
+                etat = etat.getEtatPlateauApresAction(deplacement);
+            }
         }
         
         out.felication(etat, etatInitial);
