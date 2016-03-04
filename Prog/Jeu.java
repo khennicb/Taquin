@@ -41,8 +41,7 @@ public class Jeu {
         out.waitForUser();
                         
         while (!etat.estFinal()) {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            out.clean();
             
             out.afficherEtat(etat);
             Deplacement deplacement;
@@ -67,6 +66,6 @@ public class Jeu {
             
         }
         
-        out.felication();
+        out.felication(etat);
     }
 }

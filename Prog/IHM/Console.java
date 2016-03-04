@@ -24,10 +24,11 @@ public class Console implements IHM {
         }
         
         System.out.println("------");
+        System.out.println("");
     }
     
     public void afficheEtatFinal(EtatPlateau etat){
-        System.out.println("");
+//        System.out.println("");
         System.out.println("- Etat Finale : " + etat.getListeMouvements());
         
         for(int[] ligne : etat.getEtatFinal()) {
@@ -45,13 +46,13 @@ public class Console implements IHM {
     
     public String listen(){
         System.out.println("");
+        
         String d = input.nextLine();
         while(!d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d")) {
             System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: z, q, s, d");
             d = input.nextLine();
         }
         
-        //System.out.println("Vous avez saisi: " + d);
         return d;
     }
     
@@ -65,13 +66,18 @@ public class Console implements IHM {
         System.out.println("");
     }
     
-    public void felication(){
-        System.out.println("");
-        System.out.println("");
+    public void felication(EtatPlateau etat){
+        clean();
+        afficheEtatFinal(etat);
         System.out.println("Bravo ! Vous avez gagné.e !");
     }
     
     public void afficheMessage(String txt){
         System.out.println(txt);
+    }
+    
+    public void clean(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
