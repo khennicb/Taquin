@@ -50,11 +50,11 @@ public class Jeu {
             do {                
                 String d = out.listen();
                 
-                if (d.equalsIgnoreCase("8")) {
+                if (d.equalsIgnoreCase("8") || d.equalsIgnoreCase("z")) {
                     deplacement = Deplacement.Haut;
-                } else if (d.equalsIgnoreCase("2")) {
+                } else if (d.equalsIgnoreCase("2") || d.equalsIgnoreCase("s")) {
                     deplacement = Deplacement.Bas;
-                } else if (d.equalsIgnoreCase("4")) {
+                } else if (d.equalsIgnoreCase("4") || d.equalsIgnoreCase("q")) {
                     deplacement = Deplacement.Gauche;
                 } else {
                     deplacement = Deplacement.Droite;
