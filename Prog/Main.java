@@ -1,5 +1,6 @@
 package Prog;
 
+import Prog.IHM.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -10,14 +11,14 @@ public class Main {
     public static void main(String[] args) {   
         final String pathData = "Data";
         ArrayList<String> modeJeux = new ArrayList();
-        modeJeux.add("Jeux");
-        modeJeux.add("A*");
-        modeJeux.add("Profondeur");
+        modeJeux.add("Jouer à la main");
+        modeJeux.add("Résolution avec A*");
+        modeJeux.add("Résolution en profondeur");
         //Ajouter Modification est modifier le if a la ligne 118
         
         EntreeSortieFichier fichier;
         int[][][] plateau;
-        EtatPlateau etatPlateau;
+        EtatPlateau init;
         Solveur solveur;
         String map = null;
         String mode = null;
@@ -85,7 +86,7 @@ public class Main {
         if (map==null){
             File file = new File(pathData);
             File[] files = file.listFiles();
-            System.out.println("Quel carte voulez-vous choisir : Taper un nombre ou le nom du fichier (dans le dossier "+pathData+") ? ");
+            System.out.println("Quel carte voulez-vous choisir ? Tapez un nombre ou le nom du fichier (dans le dossier "+pathData+")");
             for (i=0;i<files.length;i++){
                 System.out.println(i+" - "+files[i].getName());
             }
@@ -109,20 +110,24 @@ public class Main {
             System.out.println("Fichier au mauvais format");
             return;
         }
-        etatPlateau = new EtatPlateau("", plateau[0], plateau[1]);
-        solveur = new Solveur(etatPlateau);
+        init = new EtatPlateau("", plateau[0], plateau[1]);
+        solveur = new Solveur(init);
+        Console c = new Console();
+        
         if (solveur.estSolvable()) {
             if ("Jeux".equals(mode)){
-                Jeu jeu = new Jeu(etatPlateau);
+                Jeu jeu = new Jeu(init);
                 jeu.lancerLeJeu();
             } else if ("A*".equals(mode)){
-                SolveurSniper s = new SolveurSniper(etatPlateau);
+                SolveurSniper s = new SolveurSniper(init);
                 EtatPlateau sol = s.solve();
-                System.out.println("la solution est : " + sol.getListeMouvements());
+                c.replayEtat(sol, init);
+                //System.out.println("la solution est : " + sol.getListeMouvements());
             } else if ("Profondeur".equals(mode)){
-                SolveurVertical s = new SolveurVertical(etatPlateau);
+                SolveurVertical s = new SolveurVertical(init);
                 EtatPlateau sol = s.solve();
-                System.out.println("la solution est : " + sol.getListeMouvements());
+                c.replayEtat(sol, init);
+                //System.out.println("la solution est : " + sol.getListeMouvements());
             }
         } else {
             System.out.println("Le jeu n'est pas réalisable");
