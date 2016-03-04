@@ -46,7 +46,7 @@ public class Main {
         if (map==null){
             File file = new File(pathData);
             File[] files = file.listFiles();
-            System.out.println("Quel carte voulez vous choisir un nombre ou le nom (dans le dossier "+pathData+") ? ");
+            System.out.println("Quel carte voulez-vous choisir : un nombre ou le nom (dans le dossier "+pathData+") ? ");
             for (i=0;i<files.length;i++){
                 System.out.println(i+" - "+files[i].getName());
             }
@@ -64,13 +64,14 @@ public class Main {
         try {
             plateau = fichier.readPlateau(map);
         } catch (FileNotFoundException ex) {
-            System.out.println("Fichier non trouver");
+            System.out.println("Fichier non trouvé");
             return;
         } catch (ExceptionFormatFichier ex) {
             System.out.println("Fichier au mauvais format");
             return;
         }
-        solveur = new Solveur(plateau[0], plateau[1]);
+        EtatPlateau e = new EtatPlateau("", plateau[0], plateau[1]);
+        solveur = new Solveur(e);
         if (solveur.estSolvable()) {
             if (jeux==true){
                 EtatPlateau ep = new EtatPlateau("", plateau[0], plateau[1]);

@@ -12,8 +12,8 @@ public class TestYvan {
         
         EtatPlateau test1 = new EtatPlateau("", plateau[0], plateau[1]);
         EtatPlateau test2 = new EtatPlateau("", plateau[1], plateau[1]);
-              
-        Solveur s = new Solveur(plateau[0], plateau[1]);
+        
+        Solveur s = new Solveur(test1);
         System.out.println(s.estSolvable());
         
 //        OUT.afficherEtat(test1);
