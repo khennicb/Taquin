@@ -2,17 +2,23 @@ package Prog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     
-    public static void main(String[] args) {         
+    public static void main(String[] args) {   
+        final String pathData = "Data";
+        ArrayList<String> modeJeux = new ArrayList();
+        modeJeux.add("Jeux");
+        modeJeux.add("Profondeur");
+        //Ajouter Modification est modifier le if a la ligne 118
+        
         EntreeSortieFichier fichier;
         int[][][] plateau;
         Solveur solveur;
         String map = null;
-        Boolean jeux = null;
-        final String pathData = "Data";
+        String mode = null;
         Scanner input = new Scanner(System.in);
         
         int i;
@@ -20,33 +26,64 @@ public class Main {
         
         i=0;      
         while (i<args.length){
-            if("-p".equals(args[i])){
-                jeux = true;
-            } else if ("-a".equals(args[i])){
-                jeux = false;
+            if("-m".equals(args[i])){
+                i++;
+                if (i<args.length && args[i].length()>0 && args[i].charAt(0)!='-' && modeJeux.contains(args[i])){
+                    mode = args[i];
+                } else {
+                    String chaine = "Syntaxe : -m {";
+                    for(String s : modeJeux){
+                        chaine+=s+"|";
+                    }
+                    chaine = chaine.substring(0, chaine.length()-1)+"}";
+                    System.out.println(chaine);
+                    return;
+                }
+            } else if("-p".equals(args[i])) {
+                i++;
+                if (i<args.length && args[i].length()>0 && args[i].charAt(0)!='-'){
+                    map = args[i];
+                } else {
+                    System.out.println("Syntaxe : -m {PlateauDeJeu}");
+                    return;
+                }
             } else {
-                map = args[i];
+                String chaine = "Syntaxe : -m {";
+                for(String s : modeJeux){
+                    chaine+=s+"|";
+                }
+                chaine = chaine.substring(0, chaine.length()-1)+"}";
+                System.out.println(chaine);
+                System.out.println("          -p {PlateauDeJeu}");
+                return;
             }
             i++;
         }
         
-        if (jeux==null){
-            System.out.println("Que voulez vous faire ? ");
-            System.out.println("1 - Jouer");
-            System.out.println("2 - Résoudre");  
+        if (mode==null){
+            System.out.println("Que voulez-vous faire ? ");
+            for (i=0;i<modeJeux.size();i++){
+                System.out.println(i+" - "+modeJeux.get(i));
+            }
+            int choixNombre;
             do {
                 choix = input.nextLine();
-            } while (!"1".equals(choix) && !"2".equals(choix)); 
-            if ("1".equals(choix)){
-                jeux =true;
-            } else {
-                jeux = false;
-            }
+                try {
+                    choixNombre = Integer.valueOf(choix);
+                } catch (NumberFormatException e){
+                    System.out.println("Choisir un nombre entre 0 et "+(modeJeux.size()-1));
+                    choixNombre=-1;
+                }
+                if (choixNombre<0 || choixNombre>=modeJeux.size()){
+                    System.out.println("Choisir un nombre entre 0 et "+(modeJeux.size()-1));
+                }
+            } while (choixNombre<0 || choixNombre>=modeJeux.size()); 
+            mode = modeJeux.get(choixNombre);
         }
         if (map==null){
             File file = new File(pathData);
             File[] files = file.listFiles();
-            System.out.println("Quel carte voulez vous choisir un nombre ou le nom (dans le dossier "+pathData+") ? ");
+            System.out.println("Quel carte voulez-vous choisir un nombre : ou le nom (dans le dossier "+pathData+") ? ");
             for (i=0;i<files.length;i++){
                 System.out.println(i+" - "+files[i].getName());
             }
@@ -64,7 +101,7 @@ public class Main {
         try {
             plateau = fichier.readPlateau(map);
         } catch (FileNotFoundException ex) {
-            System.out.println("Fichier non trouver");
+            System.out.println("Fichier non trouve");
             return;
         } catch (ExceptionFormatFichier ex) {
             System.out.println("Fichier au mauvais format");
@@ -72,7 +109,7 @@ public class Main {
         }
         solveur = new Solveur(plateau[0], plateau[1]);
         if (solveur.estSolvable()) {
-            if (jeux==true){
+            if ("Jeux".equals(mode)){
                 EtatPlateau ep = new EtatPlateau("", plateau[0], plateau[1]);
                 Jeu jeu = new Jeu(ep);
                 jeu.lancerLeJeu();
