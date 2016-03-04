@@ -2,6 +2,7 @@ package Prog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,10 +10,12 @@ public class Main {
     
     public static void main(String[] args) {   
         final String pathData = "Data";
+        final String pathReport = "Report";
         ArrayList<String> modeJeux = new ArrayList();
         modeJeux.add("Jeux");
         modeJeux.add("A*");
         modeJeux.add("Profondeur");
+        modeJeux.add("Rapport");
         //Ajouter Modification est modifier le if a la ligne 118
         
         EntreeSortieFichier fichier;
@@ -99,7 +102,7 @@ public class Main {
             }
         }
         
-        fichier = new EntreeSortieFichier(pathData);
+        fichier = new EntreeSortieFichier(pathData,pathReport);
         try {
             plateau = fichier.readPlateau(map);
         } catch (FileNotFoundException ex) {
@@ -123,6 +126,16 @@ public class Main {
                 SolveurVertical s = new SolveurVertical(etatPlateau);
                 EtatPlateau sol = s.solve();
                 System.out.println("la solution est : " + sol.getListeMouvements());
+            } else if ("Rapport".equals(mode)){
+                Solveur[] solveurs = {new SolveurSniper(etatPlateau),new SolveurVertical(etatPlateau)};
+                for(Solveur s : solveurs){
+                    s.solve();
+                }
+                try {
+                    fichier.writeResult(solveurs, map, map);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         } else {
             System.out.println("Le jeu n'est pas réalisable");

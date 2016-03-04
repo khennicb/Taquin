@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 public class MainNono {
     public static void main(String[] args) throws FileNotFoundException, ExceptionFormatFichier {
         
-        EntreeSortieFichier fichier = new EntreeSortieFichier("Data");
+        EntreeSortieFichier fichier = new EntreeSortieFichier("Data","Repport");
         
         int[][][] plateau = fichier.readPlateau("sp000.txt");
         

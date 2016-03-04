@@ -7,6 +7,7 @@ public class SolveurSniper extends Solveur{
 
     public SolveurSniper(EtatPlateau etatInit) {
         super(etatInit);
+        nomAlgo = "Profondeur";
     }
 
     public EtatPlateau solve(){

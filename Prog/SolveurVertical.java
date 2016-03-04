@@ -24,6 +24,7 @@ public class SolveurVertical extends Solveur {
         map.add(etatInit);
         pile = new Stack<>();
         solution = null;
+        nomAlgo = "A*";
     }
 
     public EtatPlateau solve() {

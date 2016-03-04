@@ -4,13 +4,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class EntreeSortieFichier {
     private String dossierCarteInitial;
+    private String dossierRapport;
     
-    public EntreeSortieFichier(String dossierCarteInitial){
+    public EntreeSortieFichier(String dossierCarteInitial, String dossierRapport){
         this.dossierCarteInitial=dossierCarteInitial;
+        this.dossierRapport = dossierRapport;
     }
     
     /**
@@ -86,4 +89,18 @@ public class EntreeSortieFichier {
         return retour;
     }
     
+    public void writeResult(Solveur[] solveurs, String nomFichierSortie, String nomDuPLateau) throws IOException{
+        FileWriter fw = new FileWriter (new File (dossierRapport+File.separator+nomFichierSortie));       
+        fw.write("Nom                        : "+nomDuPLateau+"\n");
+        fw.write("Solution                   : "+solveurs[0].getSolution()+"\n");
+        fw.write("Longueur de la solution    : "+solveurs[0].getLongueurSolution()+"\n\n");
+        
+        for(Solveur s : solveurs){
+            fw.write("Algorithme                 : "+s.getSolution()+"\n");
+            fw.write("Temps CPU en ms            : "+((double)s.getTempsCPUNS()/(double)1000000)+"\n");
+            fw.write("Nombre de sommets visité   : "+s.getSolution()+"\n");
+            fw.write("Taille max de la structure : "+s.getTailleMax()+"\n\n");
+        }
+        fw.flush();
+    }
 }
