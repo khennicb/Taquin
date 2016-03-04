@@ -20,7 +20,7 @@ public class Console implements IHM {
     }
     
     public void afficheEtatFinal(EtatPlateau etat){
-        System.out.println("- Etat Finale : " + etat.getListeMouvements());
+        System.out.println("- Etat Finale : ");
         afficheGrille(etat.getEtatFinal());
     }
     
@@ -103,7 +103,7 @@ public class Console implements IHM {
     
     public void felication(EtatPlateau etat){
         clean();
-        afficheEtatFinal(etat);
+        afficherEtat(etat);
         System.out.println("Bravo ! Vous avez gagné.e !");
     }
     
