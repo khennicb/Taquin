@@ -128,6 +128,10 @@ public class EtatPlateau {
     public EtatPlateau getEtatPlateauApresAction(Deplacement deplacement) {
         int[][] nouvelleListeTuiles;
         nouvelleListeTuiles = new int[listeTuiles.length][listeTuiles.length];
+        
+        for (int i = 0; i < listeTuiles.length; i++) {
+            nouvelleListeTuiles[i] = listeTuiles[i].clone();            
+        }
 
         // On cherche la case '0'
         int i, j;
