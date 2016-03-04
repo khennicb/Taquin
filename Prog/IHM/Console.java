@@ -16,26 +16,34 @@ public class Console implements IHM {
     @Override
     public void afficherEtat(EtatPlateau etat) {
         System.out.println("- Etat " + etat.getHauteur() + " : " + etat.getListeMouvements());
-        
+        afficheGrille(etat.getListeTuiles());
+    }
+    
+    public void afficheEtatFinal(EtatPlateau etat){
+        System.out.println("- Etat Finale : ");
+        afficheGrille(etat.getEtatFinal());
+    }
+    
+    private void afficheGrille(int[][] grille){
         System.out.print("╔════");
-        for(int[] ligne : etat.getListeTuiles()) {
+        for(int[] ligne : grille) {
             System.out.print("══════");
         }
         System.out.print("╗\n");
         
-        for(int[] ligne : etat.getListeTuiles()) {
+        for(int[] ligne : grille) {
             System.out.print("║    ");
             for(int tuile : ligne) {
                 if(tuile <= 9)
-                    System.out.print(" "+tuile+"    ");
+                    System.out.print(" "+(tuile==0 ? " " : tuile)+"    ");
                 else
-                    System.out.print(tuile+"    ");
+                    System.out.print((tuile==0 ? "  " : tuile)+"    ");
             }
             System.out.print("║\n");
         }
         
         System.out.print("╚════");
-        for(int[] ligne : etat.getListeTuiles()) {
+        for(int[] ligne : grille) {
             System.out.print("══════");
         }
         System.out.println("╝");
@@ -43,43 +51,16 @@ public class Console implements IHM {
     
     public void animate(EtatPlateau etat1, EtatPlateau etat2) {
         int delai = 200;
-        int e1x0;
-        int e1y0;
-        int e2x0;
-        int e2y0;
-        
-        
         
         try {
             clean();
             afficherEtat(etat1);
-            Thread.sleep(delai);
-            
-            Thread.sleep(delai);
-            
             Thread.sleep(delai);
             clean();
             afficherEtat(etat2);
             Thread.sleep(delai);
         } catch (InterruptedException ex) {}
     }
-    
-    public void afficheEtatFinal(EtatPlateau etat){
-//        System.out.println("");
-        System.out.println("- Etat Finale : " + etat.getListeMouvements());
-        
-        for(int[] ligne : etat.getEtatFinal()) {
-            System.out.print("- (\t");
-            for(int tuile : ligne) {
-                System.out.print(tuile+"\t");
-            }
-            System.out.print(")\n");
-        }
-        
-        System.out.println("------");
-        System.out.println("");
-    }
-    
     
     public String listen(){
         System.out.println("");
@@ -107,11 +88,11 @@ public class Console implements IHM {
         afficherEtat(etat);
         System.out.println("Le but du jeu est d'arriver à cette état final : ");
         afficheEtatFinal(etat);
-        System.out.println("Pour cela, vous allez devoir déplacer les cases qui entoure le 0 pour qu'elles prennent la place de celui-ci.");
-        System.out.println("Entrez \"8\" ou \"Z\" pour que la case sous le 0 monte et remplace le 0.");
-        System.out.println("Entrez \"2\" ou \"S\" pour que la case au dessus du 0 descende et remplace le 0.");
-        System.out.println("Entrez \"4\" ou \"Q\" pour que la case à droite du 0 se déplace vers la gauche et remplace le 0.");
-        System.out.println("Entrez \"6\" ou \"D\" pour que la case à gauche du 0 se déplace vers la droite et remplace le 0.");
+        System.out.println("Pour cela, vous allez devoir déplacer les cases qui entoure la case vide pour qu'elles prennent la place de celle-ci.");
+        System.out.println("Entrez \"8\" ou \"Z\" pour que la case sous la case vide monte.");
+        System.out.println("Entrez \"2\" ou \"S\" pour que la case au dessus de la case vide descende.");
+        System.out.println("Entrez \"4\" ou \"Q\" pour que la case à droite de la case vide se déplace vers la gauche.");
+        System.out.println("Entrez \"6\" ou \"D\" pour que la case à gauche de la case vide se déplace vers la droite.");
         System.out.println("");
         System.out.println("Vous pouvez quitter à tout moment en tapant \"quitter\". Pour demander de l'aide, tapez \"help\".");
         System.out.println("");
@@ -122,7 +103,7 @@ public class Console implements IHM {
     
     public void felication(EtatPlateau etat){
         clean();
-        afficheEtatFinal(etat);
+        afficherEtat(etat);
         System.out.println("Bravo ! Vous avez gagné.e !");
     }
     
