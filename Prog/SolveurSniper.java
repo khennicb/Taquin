@@ -7,7 +7,7 @@ public class SolveurSniper extends Solveur{
 
     public SolveurSniper(EtatPlateau etatInit) {
         super(etatInit);
-        nomAlgo = "Profondeur";
+        nomAlgo = "A*";
     }
 
     public EtatPlateau solve(){
@@ -30,6 +30,7 @@ public class SolveurSniper extends Solveur{
             
             if(current.toHashKey().equals(fin.toHashKey())){
                 longueurSolution = current.getHauteur();
+                Solution = current.getListeMouvements();
                 long tfin = System.nanoTime();
                 tempsCPUNS = tfin-tdebut;
                 return current;

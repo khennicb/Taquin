@@ -85,9 +85,11 @@ public class Console implements IHM {
         String d = input.nextLine();
         while(!d.equalsIgnoreCase("8") && !d.equalsIgnoreCase("6") && !d.equalsIgnoreCase("2") && !d.equalsIgnoreCase("4") &&
                 !d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d") &&
+                !d.equalsIgnoreCase("h") && !d.equalsIgnoreCase("g") && !d.equalsIgnoreCase("b") &&
                 !d.equalsIgnoreCase("quit") && !d.equalsIgnoreCase("quitter") && !d.equalsIgnoreCase("exit") && 
-                !d.equalsIgnoreCase("help") && !d.equalsIgnoreCase("aide")) {
-            System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: 2, 4, 6, 8 et z, q, s, d");
+                !d.equalsIgnoreCase("help") && !d.equalsIgnoreCase("aide") &&
+                !d.equalsIgnoreCase("solution") && !d.equalsIgnoreCase("solve")) {
+            System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: 2, 4, 6, 8 ou z, q, s, d ou H, B, D, G");
             d = input.nextLine();
         }
         
@@ -101,17 +103,17 @@ public class Console implements IHM {
     }
     
     public String getExplications(EtatPlateau etat){
-        System.out.println("Bonjour. Voici l'état courant de votre grille : ");
-        afficherEtat(etat);
         System.out.println("Le but du jeu est d'arriver à cette état final : ");
         afficheEtatFinal(etat);
+        System.out.println("Bonjour. Voici l'état courant de votre grille : ");
+        afficherEtat(etat);
         System.out.println("Pour cela, vous allez devoir déplacer les cases qui entoure la case vide pour qu'elles prennent la place de celle-ci.");
         System.out.println("Entrez \"8\" ou \"Z\" pour que la case sous la case vide monte.");
         System.out.println("Entrez \"2\" ou \"S\" pour que la case au dessus de la case vide descende.");
         System.out.println("Entrez \"4\" ou \"Q\" pour que la case à droite de la case vide se déplace vers la gauche.");
         System.out.println("Entrez \"6\" ou \"D\" pour que la case à gauche de la case vide se déplace vers la droite.");
         System.out.println("");
-        System.out.println("Vous pouvez quitter à tout moment en tapant \"quitter\". Pour demander de l'aide, tapez \"help\".");
+        System.out.println("Vous pouvez quitter à tout moment en tapant \"quitter\". Pour demander de l'aide, tapez \"help\". Pour voir la solution complète, tapez \"solve\"");
         System.out.println("");
         System.out.print("Vous êtes pret ? ");
         
@@ -126,6 +128,10 @@ public class Console implements IHM {
         System.out.println("Solution optimal : ");
         SolveurSniper solv = new SolveurSniper(etatInit);
         EtatPlateau etatOptimal = solv.solve();
+        System.out.println("nombre de coups : " + etatOptimal.getHauteur() + ", chemin : " + etatOptimal.getListeMouvements());
+    }
+    
+    public void afficheSolution(EtatPlateau etatOptimal){
         System.out.println("nombre de coups : " + etatOptimal.getHauteur() + ", chemin : " + etatOptimal.getListeMouvements());
     }
     

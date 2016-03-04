@@ -1,14 +1,14 @@
 Nom                        : sp003.txt
-Solution                   : null
-Longueur de la solution    : 0
+Solution                   : BBGHHDBGH
+Longueur de la solution    : 9
 
-Algorithme                 : null
-Temps CPU en ms            : 0.0
-Nombre de sommets visité   : null
-Taille max de la structure : 0
+Algorithme                 : A*
+Temps CPU en ms            : 5.980087
+Nombre de sommets visité   : 21
+Taille max de la structure : 37
 
-Algorithme                 : null
-Temps CPU en ms            : 52.372732
-Nombre de sommets visité   : null
+Algorithme                 : Profondeur
+Temps CPU en ms            : 17.671718
+Nombre de sommets visité   : 0
 Taille max de la structure : 0
 
