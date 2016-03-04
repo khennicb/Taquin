@@ -40,13 +40,13 @@ public class SolveurVertical extends Solveur {
         while (algoEnCours) {
             etatCourant = pile.pop();
             
-            etatCourant.affiche();
+            //etatCourant.affiche();
 
             generation(etatCourant);
 
             testSolution(etatCourant);
-            if (solution != null) { 
-            //if (pile.isEmpty()) { // on vérifie que ce n'est pas fini
+            //if (solution != null) { 
+            if (pile.isEmpty()) { // on vérifie que ce n'est pas fini
                 algoEnCours = false;
             }
 
@@ -62,6 +62,8 @@ public class SolveurVertical extends Solveur {
     private int generation(EtatPlateau e) {
         // si cette etat ne peut pas devenir une meilleure solution
         if (solution != null && e.getScoreManatthan()+1 >= solution.getScoreManatthan()) {
+            return 0;
+        }else if (e.getScoreManatthan()+1 >= 50) {
             return 0;
         }
         int count = 0;
