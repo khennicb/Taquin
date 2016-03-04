@@ -1,0 +1,19 @@
+Nom                        : sp000.txt
+Solution                   : BDHHGBDDBGHHG
+Longueur de la solution    : 13
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 10.068357
+Nombre de sommets visité   : 18
+Taille max de la structure : 33
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 3.536597
+Nombre de sommets visité   : 56
+Taille max de la structure : 29
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 35.358797
+Nombre de sommets visité   : 9708
+Taille max de la structure : 3914
+

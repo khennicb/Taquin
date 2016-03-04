@@ -1,0 +1,19 @@
+Nom                        : sp009.txt
+Solution                   : HHGBBDHHGBDDBGGHHDDBGHG
+Longueur de la solution    : 23
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 1407.922283
+Nombre de sommets visité   : 54912
+Taille max de la structure : 88799
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 8.568215
+Nombre de sommets visité   : 7620
+Taille max de la structure : 2415
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 307.76633
+Nombre de sommets visité   : 395888
+Taille max de la structure : 124096
+

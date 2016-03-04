@@ -1,0 +1,19 @@
+Nom                        : sp008.txt
+Solution                   : HGBBDDHGBGHHDBGBDHGH
+Longueur de la solution    : 20
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 2108.270542
+Nombre de sommets visité   : 81966
+Taille max de la structure : 142375
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 4.947396
+Nombre de sommets visité   : 4116
+Taille max de la structure : 1272
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 148.57059
+Nombre de sommets visité   : 183756
+Taille max de la structure : 64627
+

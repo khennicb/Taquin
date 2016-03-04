@@ -1,0 +1,19 @@
+Nom                        : sp004.txt
+Solution                   : HGBBDHHGBGHDBBGHHDBGH
+Longueur de la solution    : 21
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 1615.723378
+Nombre de sommets visité   : 63189
+Taille max de la structure : 106891
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 6.006454
+Nombre de sommets visité   : 7608
+Taille max de la structure : 2463
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 179.814751
+Nombre de sommets visité   : 233452
+Taille max de la structure : 80154
+

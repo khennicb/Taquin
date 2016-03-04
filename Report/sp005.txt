@@ -1,0 +1,19 @@
+Nom                        : sp005.txt
+Solution                   : BGHDBDHGBDBGGHDDHGBGH
+Longueur de la solution    : 21
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 229.901047
+Nombre de sommets visité   : 9282
+Taille max de la structure : 15493
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 5.058498
+Nombre de sommets visité   : 2840
+Taille max de la structure : 1003
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 208.797178
+Nombre de sommets visité   : 252304
+Taille max de la structure : 84885
+

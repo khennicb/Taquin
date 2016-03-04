@@ -16,8 +16,9 @@ public class Main {
 
         HashMap<String,String> modeJeux = new HashMap();
         modeJeux.put("Jouer","jeux");
-        modeJeux.put("Résoudre avec A*","a*");
+        modeJeux.put("Résoudre en Largueur","largueur");
         modeJeux.put("Résoudre en Profondeur","profondeur");
+        modeJeux.put("Résoudre avec Meilleur d'abord","meilleur");
         modeJeux.put("Générer un Rapport","rapport");
         //Ajouter Modification est modifier le if a la ligne 118
         
@@ -129,18 +130,23 @@ public class Main {
                 try {
                     jeu.lancerLeJeu();
                 } catch (ExceptionQuitter ex) {}
-            } else if ("a*".equals(mode)){
-                SolveurSniper s = new SolveurSniper(init);
+            } else if ("largueur".equals(mode)){
+                SolveurMitrailleur s = new SolveurMitrailleur(init);
                 EtatPlateau sol = s.solve();
                 c.replayEtat(sol, init);
                 //System.out.println("la solution est : " + sol.getListeMouvements());
             } else if ("profondeur".equals(mode)){
-                SolveurVertical s = new SolveurVertical(init);
+                SolveurBazooka s = new SolveurBazooka(init);
+                EtatPlateau sol = s.solve();
+                c.replayEtat(sol, init);
+                //System.out.println("la solution est : " + sol.getListeMouvements());
+            } else if ("meilleur".equals(mode)){
+                SolveurSniper s = new SolveurSniper(init);
                 EtatPlateau sol = s.solve();
                 c.replayEtat(sol, init);
                 //System.out.println("la solution est : " + sol.getListeMouvements());
             } else if ("rapport".equals(mode)){
-                Solveur[] solveurs = {new SolveurSniper(init), new SolveurVertical(init)};
+                Solveur[] solveurs = {new SolveurSniper(init), new SolveurBazooka(init), new SolveurMitrailleur(init)};
                 for (Solveur s : solveurs){
                     s.solve();
                 }

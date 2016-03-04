@@ -1,0 +1,19 @@
+Nom                        : sp006.txt
+Solution                   : HGBDDHGBDBGHGHDBGBDHHG
+Longueur de la solution    : 22
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 723.883841
+Nombre de sommets visité   : 27861
+Taille max de la structure : 49156
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 3.038682
+Nombre de sommets visité   : 2348
+Taille max de la structure : 848
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 271.133949
+Nombre de sommets visité   : 343528
+Taille max de la structure : 110300
+

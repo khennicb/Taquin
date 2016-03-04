@@ -18,6 +18,7 @@ public class SolveurMitrailleur extends Solveur {
         longueurSolution = 0;
         nbSommetsVisite = 0;
         tailleMax = 0;
+        nomAlgo="Largueur";
     }
 
     public EtatPlateau solve() {

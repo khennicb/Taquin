@@ -2,13 +2,18 @@ Nom                        : sp003.txt
 Solution                   : BBGHHDBGH
 Longueur de la solution    : 9
 
-Algorithme                 : A*
-Temps CPU en ms            : 5.980087
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 10.755196
 Nombre de sommets visité   : 21
 Taille max de la structure : 37
 
 Algorithme                 : Profondeur
-Temps CPU en ms            : 17.671718
-Nombre de sommets visité   : 0
-Taille max de la structure : 0
+Temps CPU en ms            : 6.896555
+Nombre de sommets visité   : 268
+Taille max de la structure : 113
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 12.658277
+Nombre de sommets visité   : 1176
+Taille max de la structure : 496
 

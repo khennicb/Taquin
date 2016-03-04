@@ -7,7 +7,7 @@ public class SolveurSniper extends Solveur{
 
     public SolveurSniper(EtatPlateau etatInit) {
         super(etatInit);
-        nomAlgo = "A*";
+        nomAlgo = "Meilleur d'abord";
     }
 
     public EtatPlateau solve(){

@@ -18,6 +18,7 @@ public class SolveurBazooka extends Solveur {
         nbSommetsVisite = 0;
         tailleMax = 0;
         tempsCPUNS=0;
+        nomAlgo="Profondeur";
     }
 
     public EtatPlateau solve() {

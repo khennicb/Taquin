@@ -1,0 +1,19 @@
+Nom                        : sp001.txt
+Solution                   : BBDHGGHDBGBDHHG
+Longueur de la solution    : 15
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 36.610879
+Nombre de sommets visité   : 540
+Taille max de la structure : 908
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 8.111004
+Nombre de sommets visité   : 2200
+Taille max de la structure : 712
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 34.638422
+Nombre de sommets visité   : 22816
+Taille max de la structure : 9154
+

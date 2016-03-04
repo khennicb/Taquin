@@ -1,0 +1,19 @@
+Nom                        : sp007.txt
+Solution                   : DBGBGHDBDHHGBDHGGBDBDHGHG
+Longueur de la solution    : 25
+
+Algorithme                 : Meilleur d'abord
+Temps CPU en ms            : 4823.677815
+Nombre de sommets visité   : 162264
+Taille max de la structure : 261751
+
+Algorithme                 : Profondeur
+Temps CPU en ms            : 21.042942
+Nombre de sommets visité   : 20048
+Taille max de la structure : 5257
+
+Algorithme                 : Largueur
+Temps CPU en ms            : 451.524435
+Nombre de sommets visité   : 641104
+Taille max de la structure : 170731
+
