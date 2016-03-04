@@ -6,7 +6,7 @@ import java.io.IOException;
 public class TestYvan {
     
     public static void main(String[] args) throws FileNotFoundException, ExceptionFormatFichier, IOException, InterruptedException {
-        EntreeSortieFichier fichier = new EntreeSortieFichier("Data");
+        EntreeSortieFichier fichier = new EntreeSortieFichier("Data","Repport");
 //        Console OUT = new Console();        
         int[][][] plateau = fichier.readPlateau("sp0401.txt");
         

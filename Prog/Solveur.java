@@ -8,9 +8,11 @@ public class Solveur {
     protected long tempsCPUNS;
     protected int nbSommetsVisite;
     protected int tailleMax;
+    protected String nomAlgo;
     
     public Solveur(EtatPlateau etatInit) {
         this.etatInit = etatInit;
+        nomAlgo = "Générale";
     }
             
     /**
@@ -88,23 +90,31 @@ public class Solveur {
         return deplacementCaseBlacne%2==nbPermutation%2;
     }
     
-        public String getSolution() {
-            return Solution;
-        }
+    public EtatPlateau solve() {
+        return null;
+    }
+    
+    public String getSolution() {
+        return Solution;
+    }
 
-        public int getLongueurSolution() {
-            return longueurSolution;
-        }
+    public int getLongueurSolution() {
+        return longueurSolution;
+    }
 
-        public long getTempsCPUNS() {
-            return tempsCPUNS;
-        }
+    public long getTempsCPUNS() {
+        return tempsCPUNS;
+    }
 
-        public int getNbSommetsVisite() {
-            return nbSommetsVisite;
-        }
+    public int getNbSommetsVisite() {
+        return nbSommetsVisite;
+    }
 
-        public int getTailleMax() {
-            return tailleMax;
-        }
+    public int getTailleMax() {
+        return tailleMax;
+    }
+
+    public String getNomAlgo() {
+        return nomAlgo;
+    }
 }

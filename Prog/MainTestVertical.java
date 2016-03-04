@@ -8,7 +8,7 @@ public class MainTestVertical {
     public static void main(String[] args) throws FileNotFoundException, ExceptionFormatFichier {
         
         String filename = "sp003.txt";
-        EntreeSortieFichier esF = new EntreeSortieFichier("Data");
+        EntreeSortieFichier esF = new EntreeSortieFichier("Data","Repport");
         
         int[][][] plateau = esF.readPlateau(filename);
         

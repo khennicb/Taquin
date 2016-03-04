@@ -1,0 +1,14 @@
+Nom                        : sp009.txt
+Solution                   : null
+Longueur de la solution    : 0
+
+Algorithme                 : null
+Temps CPU en ms            : 0.0
+Nombre de sommets visité   : null
+Taille max de la structure : 0
+
+Algorithme                 : null
+Temps CPU en ms            : 112.199516
+Nombre de sommets visité   : null
+Taille max de la structure : 0
+
