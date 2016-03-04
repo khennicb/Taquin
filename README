@@ -1,0 +1,39 @@
+
+|===============================================|
+|Bienvenu sur le README de la mort qui tue !!!  |
+|===============================================|
+
+I) Compilation
+
+Vous possédez bien sûr une version récente de "Java Developpement Kit"
+Vous devez compiler les sources du code comptenues dans le dossier "Prog"
+
+Le programme àa exécuter devrait s'appeler "Main" normalement
+
+II) Execution
+
+Veuillez exécuter le programme dans une console en tapant ./Main
+
+vous arriverez dans un menu vous demandant de choisir entre :
+    - l'otpion "Jouer" pour résoudre par vous-même le jeu du taquin
+    - les différents algorythme de résolution
+    - "Générer un Rapport" pour comparer l'utilisation des ressources par les différents algorithmes sur un fichier.
+
+III) Intéraction
+
+Les instructions du jeu sont expliquées à la sélection de "Jouer" dans le menu.
+
+Il sera possible de quitter une partie en cours avec la commande "quitter".
+Il est aussi possible de demander au solveur de résoudre le jeu à notre place (résoudre depuis le début).
+
+Je vous rappelle aussi qu'un récapitulatif des commandes est affiché si vous écrivez "help"
+
+
+IV) Compréhension du code
+
+Trois solveurs sont implémentés :
+    - Solveur Sniper est le solveur qui utilise la méthode du "Meilleur d'abord" 
+    - Solveur Bazooka est le solveur qui utilise le parcours en profondeur (tempéré)
+    - Solveur Mitrailleur est le solveur qui utilise le parcours en Largeur
+
+

@@ -16,4 +16,3 @@ Algorithme                 : Largueur
 Temps CPU en ms            : 179.814751
 Nombre de sommets visité   : 233452
 Taille max de la structure : 80154
-
