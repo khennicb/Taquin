@@ -11,7 +11,7 @@ public class Main {
         final String pathData = "Data";
         ArrayList<String> modeJeux = new ArrayList();
         modeJeux.add("Jeux");
-        modeJeux.add("Profondeur");
+        modeJeux.add("A*");
         //Ajouter Modification est modifier le if a la ligne 118
         
         EntreeSortieFichier fichier;
@@ -114,7 +114,7 @@ public class Main {
             if ("Jeux".equals(mode)){
                 Jeu jeu = new Jeu(etatPlateau);
                 jeu.lancerLeJeu();
-            } else {
+            } else if ("A*".equals(mode)){
                 //TO DO
                 System.err.println("Rien !!!!!!!!!!!!!!!!!!!!!!!");
             }

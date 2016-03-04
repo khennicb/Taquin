@@ -1,10 +1,9 @@
 package Prog;
 
-import Prog.IHM.Console;
-
 public class Solveur {
 
-    EtatPlateau etatInit;
+    protected EtatPlateau etatInit;
+    
     public Solveur(EtatPlateau etatInit) {
         this.etatInit = etatInit;
     }
