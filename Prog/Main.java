@@ -12,6 +12,7 @@ public class Main {
         ArrayList<String> modeJeux = new ArrayList();
         modeJeux.add("Jeux");
         modeJeux.add("A*");
+        modeJeux.add("Profondeur");
         //Ajouter Modification est modifier le if a la ligne 118
         
         EntreeSortieFichier fichier;
@@ -117,6 +118,10 @@ public class Main {
             } else if ("A*".equals(mode)){
                 //TO DO
                 System.err.println("Rien !!!!!!!!!!!!!!!!!!!!!!!");
+            } else if ("Profondeur".equals(mode)){
+                SolveurVertical s = new SolveurVertical(etatPlateau);
+                EtatPlateau sol = s.solve();
+                System.out.println("la solution est : " + sol.getListeMouvements());
             }
         } else {
             System.out.println("Le jeu n'est pas réalisable");
