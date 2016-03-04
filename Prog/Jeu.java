@@ -32,7 +32,7 @@ public class Jeu {
         
         out.afficheEtatFinal(etat);
         
-        Solveur s = new Solveur(tabFinal, etat.getListeTuiles());
+        Solveur s = new Solveur(etat);
         if (!s.estSolvable()) {
             out.afficheMessage("Cette grille n'est pas solvable.");
             return;

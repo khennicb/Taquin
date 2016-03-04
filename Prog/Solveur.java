@@ -3,12 +3,10 @@ package Prog;
 import Prog.IHM.Console;
 
 public class Solveur {
-    private int[][] plateauInitial;
-    private int[][] plateauFinal;
 
-    public Solveur(int[][] plateauInitial, int[][] plateauFinal) {
-        this.plateauInitial = plateauInitial;
-        this.plateauFinal = plateauFinal;
+    EtatPlateau etatInit;
+    public Solveur(EtatPlateau etatInit) {
+        this.etatInit = etatInit;
     }
             
     /**
@@ -16,6 +14,9 @@ public class Solveur {
      * @return true si le jeu est fesable
      */
     public boolean estSolvable(){
+        int[][] plateauInitial = etatInit.getListeTuiles();
+        int[][] plateauFinal = etatInit.getEtatFinal();
+        
         int[][] plateau;
         int deplacementCaseBlacne, nbPermutation;
         int i1,i2,j1,j2, valeurTmp; 
