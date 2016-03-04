@@ -13,11 +13,13 @@ import Prog.IHM.Console;
  */
 public class Jeu {
     private EtatPlateau etat;
+    private EtatPlateau etatInitial;
     private int [][] tabFinal;
     private Console out;
     
     public Jeu(EtatPlateau e){
         etat = e;
+        etatInitial = e;
         tabFinal = etat.getEtatFinal();
         out = new Console();
         
@@ -74,6 +76,6 @@ public class Jeu {
             etat = etat.getEtatPlateauApresAction(deplacement);
         }
         
-        out.felication(etat);
+        out.felication(etat, etatInitial);
     }
 }

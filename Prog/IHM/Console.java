@@ -1,6 +1,7 @@
 package Prog.IHM;
 
 import Prog.EtatPlateau;
+import Prog.SolveurSniper;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -101,10 +102,15 @@ public class Console implements IHM {
         return waitForUser();
     }
     
-    public void felication(EtatPlateau etat){
+    public void felication(EtatPlateau etat, EtatPlateau etatInit){
         clean();
         afficherEtat(etat);
         System.out.println("Bravo ! Vous avez gagné.e !");
+        System.out.println("");
+        System.out.println("Solution optimal : ");
+        SolveurSniper solv = new SolveurSniper();
+        EtatPlateau etatOptimal = solv.solve(etatInit, etat);
+        System.out.println("nombre de coups : " + etatOptimal.getHauteur() + ", chemin : " + etatOptimal.getListeMouvements());
     }
     
     public void afficheMessage(String txt){
