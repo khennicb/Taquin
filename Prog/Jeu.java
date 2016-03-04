@@ -45,11 +45,22 @@ public class Jeu {
             
             out.afficherEtat(etat);
             Deplacement deplacement;
+            boolean depPossible;
             
             do {                
-                String d = out.listen();
+                int d = out.listen();
                 
-                if (d.equalsIgnoreCase("z")) {
+                if (d==8) {
+                    deplacement = Deplacement.Haut;
+                } else if (d==2) {
+                    deplacement = Deplacement.Bas;
+                } else if (d==4) {
+                    deplacement = Deplacement.Gauche;
+                } else {
+                    deplacement = Deplacement.Droite;
+                }
+                
+                /*if (d.equalsIgnoreCase("z")) {
                     deplacement = Deplacement.Haut;
                 } else if (d.equalsIgnoreCase("s")) {
                     deplacement = Deplacement.Bas;
@@ -57,10 +68,13 @@ public class Jeu {
                     deplacement = Deplacement.Gauche;
                 } else {
                     deplacement = Deplacement.Droite;
-                }
+                }*/
                 
-                out.afficheMessage("Ce déplacement est impossible.");
-            } while (!etat.deplacementPossible(deplacement));
+                depPossible = etat.deplacementPossible(deplacement);
+                if (!depPossible) {
+                    out.afficheMessage("Ce déplacement est impossible.");
+                }
+            } while (!depPossible);
             
             etat = etat.getEtatPlateauApresAction(deplacement);
             
