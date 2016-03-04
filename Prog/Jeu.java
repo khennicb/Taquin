@@ -48,13 +48,13 @@ public class Jeu {
             boolean depPossible;
             
             do {                
-                int d = out.listen();
+                String d = out.listen();
                 
-                if (d==8) {
+                if (d.equalsIgnoreCase("8")) {
                     deplacement = Deplacement.Haut;
-                } else if (d==2) {
+                } else if (d.equalsIgnoreCase("2")) {
                     deplacement = Deplacement.Bas;
-                } else if (d==4) {
+                } else if (d.equalsIgnoreCase("4")) {
                     deplacement = Deplacement.Gauche;
                 } else {
                     deplacement = Deplacement.Droite;
