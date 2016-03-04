@@ -53,7 +53,7 @@ public class Jeu {
                     deplacement = Deplacement.Gauche;
                 } else if(d.equalsIgnoreCase("6") || d.equalsIgnoreCase("d")) {
                     deplacement = Deplacement.Droite;
-                } else if (wait.equalsIgnoreCase("quit") || wait.equalsIgnoreCase("quitter") || wait.equalsIgnoreCase("exit")){
+                } else if (d.equalsIgnoreCase("quit") || d.equalsIgnoreCase("quitter") || d.equalsIgnoreCase("exit")){
                     return;
                 }else{
                     wait = out.getExplications(etat);

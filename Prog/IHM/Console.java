@@ -16,14 +16,22 @@ public class Console implements IHM {
     @Override
     public void afficherEtat(EtatPlateau etat) {
         System.out.println("- Etat " + etat.getHauteur() + " : " + etat.getListeMouvements());
-        
+        afficheGrille(etat.getListeTuiles());
+    }
+    
+    public void afficheEtatFinal(EtatPlateau etat){
+        System.out.println("- Etat Finale : " + etat.getListeMouvements());
+        afficheGrille(etat.getEtatFinal());
+    }
+    
+    private void afficheGrille(int[][] grille){
         System.out.print("╔════");
-        for(int[] ligne : etat.getListeTuiles()) {
+        for(int[] ligne : grille) {
             System.out.print("══════");
         }
         System.out.print("╗\n");
         
-        for(int[] ligne : etat.getListeTuiles()) {
+        for(int[] ligne : grille) {
             System.out.print("║    ");
             for(int tuile : ligne) {
                 if(tuile <= 9)
@@ -35,7 +43,7 @@ public class Console implements IHM {
         }
         
         System.out.print("╚════");
-        for(int[] ligne : etat.getListeTuiles()) {
+        for(int[] ligne : grille) {
             System.out.print("══════");
         }
         System.out.println("╝");
@@ -63,23 +71,6 @@ public class Console implements IHM {
             Thread.sleep(delai);
         } catch (InterruptedException ex) {}
     }
-    
-    public void afficheEtatFinal(EtatPlateau etat){
-//        System.out.println("");
-        System.out.println("- Etat Finale : " + etat.getListeMouvements());
-        
-        for(int[] ligne : etat.getEtatFinal()) {
-            System.out.print("- (\t");
-            for(int tuile : ligne) {
-                System.out.print(tuile+"\t");
-            }
-            System.out.print(")\n");
-        }
-        
-        System.out.println("------");
-        System.out.println("");
-    }
-    
     
     public String listen(){
         System.out.println("");
