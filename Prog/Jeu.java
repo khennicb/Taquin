@@ -53,11 +53,11 @@ public class Jeu {
                 erreur = true;
                 d = out.listen();
                 
-                if (d.equalsIgnoreCase("8") || d.equalsIgnoreCase("z")) {
+                if (d.equalsIgnoreCase("8") || d.equalsIgnoreCase("z") || d.equalsIgnoreCase("h")) {
                     deplacement = Deplacement.Haut;
-                } else if (d.equalsIgnoreCase("2") || d.equalsIgnoreCase("s")) {
+                } else if (d.equalsIgnoreCase("2") || d.equalsIgnoreCase("s") || d.equalsIgnoreCase("b")) {
                     deplacement = Deplacement.Bas;
-                } else if (d.equalsIgnoreCase("4") || d.equalsIgnoreCase("q")) {
+                } else if (d.equalsIgnoreCase("4") || d.equalsIgnoreCase("q") || d.equalsIgnoreCase("g")) {
                     deplacement = Deplacement.Gauche;
                 } else if(d.equalsIgnoreCase("6") || d.equalsIgnoreCase("d")) {
                     deplacement = Deplacement.Droite;
@@ -66,8 +66,12 @@ public class Jeu {
                     d = out.getExplications(etat);
                 }else if(d.equalsIgnoreCase("solution") || d.equalsIgnoreCase("solve")){
                     erreur = false;
-                    solve();
+                    EtatPlateau solution = solve();
+                    out.afficheSolution(solution);
                     d = out.waitForUser();
+                }else if(d.equalsIgnoreCase("next") || d.equalsIgnoreCase("suivant")){
+                    EtatPlateau solution = solve();
+                    
                 }
                 
                 checkForQuit(d);
@@ -88,7 +92,7 @@ public class Jeu {
         out.felication(etat, etatInitial);
     }
     
-    private void solve(){
+    private EtatPlateau solve(){
         int[][] listeTuiles = etat.getListeTuiles();
         int[][] nouvelleListeTuiles = new int[listeTuiles.length][listeTuiles.length];
         
@@ -98,8 +102,7 @@ public class Jeu {
 
         EtatPlateau plat = new EtatPlateau("", nouvelleListeTuiles, etat.getEtatFinal());
         SolveurSniper s = new SolveurSniper(plat);
-        EtatPlateau solution = s.solve();
-        out.afficheSolution(solution);
+        return s.solve();
     }
     
     private void checkForQuit(String d) throws ExceptionQuitter{

@@ -85,10 +85,11 @@ public class Console implements IHM {
         String d = input.nextLine();
         while(!d.equalsIgnoreCase("8") && !d.equalsIgnoreCase("6") && !d.equalsIgnoreCase("2") && !d.equalsIgnoreCase("4") &&
                 !d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d") &&
+                !d.equalsIgnoreCase("h") && !d.equalsIgnoreCase("g") && !d.equalsIgnoreCase("b") &&
                 !d.equalsIgnoreCase("quit") && !d.equalsIgnoreCase("quitter") && !d.equalsIgnoreCase("exit") && 
                 !d.equalsIgnoreCase("help") && !d.equalsIgnoreCase("aide") &&
                 !d.equalsIgnoreCase("solution") && !d.equalsIgnoreCase("solve")) {
-            System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: 2, 4, 6, 8 et z, q, s, d");
+            System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: 2, 4, 6, 8 ou z, q, s, d ou H, B, D, G");
             d = input.nextLine();
         }
         
