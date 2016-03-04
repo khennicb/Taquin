@@ -86,7 +86,8 @@ public class Console implements IHM {
         while(!d.equalsIgnoreCase("8") && !d.equalsIgnoreCase("6") && !d.equalsIgnoreCase("2") && !d.equalsIgnoreCase("4") &&
                 !d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d") &&
                 !d.equalsIgnoreCase("quit") && !d.equalsIgnoreCase("quitter") && !d.equalsIgnoreCase("exit") && 
-                !d.equalsIgnoreCase("help") && !d.equalsIgnoreCase("aide")) {
+                !d.equalsIgnoreCase("help") && !d.equalsIgnoreCase("aide") &&
+                !d.equalsIgnoreCase("solution") && !d.equalsIgnoreCase("solve")) {
             System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: 2, 4, 6, 8 et z, q, s, d");
             d = input.nextLine();
         }
@@ -126,6 +127,10 @@ public class Console implements IHM {
         System.out.println("Solution optimal : ");
         SolveurSniper solv = new SolveurSniper(etatInit);
         EtatPlateau etatOptimal = solv.solve();
+        System.out.println("nombre de coups : " + etatOptimal.getHauteur() + ", chemin : " + etatOptimal.getListeMouvements());
+    }
+    
+    public void afficheSolution(EtatPlateau etatOptimal){
         System.out.println("nombre de coups : " + etatOptimal.getHauteur() + ", chemin : " + etatOptimal.getListeMouvements());
     }
     

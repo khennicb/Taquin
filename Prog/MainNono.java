@@ -7,6 +7,8 @@ package Prog;
 
 import Prog.IHM.Console;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,19 +23,21 @@ public class MainNono {
         
         EtatPlateau test1 = new EtatPlateau("", plateau[0], plateau[1]);
         
-        /*EtatPlateau fin = new EtatPlateau("", plateau[1], plateau[1]);
         
-        SolveurSniper s = new SolveurSniper();
-        EtatPlateau solution = s.solve(test1, fin);
+        /*
+        SolveurSniper s = new SolveurSniper(test1);
+        EtatPlateau solution = s.solve();
         Console c = new Console();
         c.afficherEtat(solution);*/
         
         //BDHHGBDDBGHHG
         
         Jeu jeu = new Jeu(test1);
-        jeu.lancerLeJeu();
-        
-        System.out.println("Merci d'avoir joué.e!");
-        System.out.println("");
+        try {
+            jeu.lancerLeJeu();
+        } catch (ExceptionQuitter ex) {
+            System.out.println("Merci d'avoir joué.e!");
+            System.out.println("");
+        }
     }
 }

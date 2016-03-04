@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     
@@ -117,7 +119,11 @@ public class Main {
         if (solveur.estSolvable()) {
             if ("Jeux".equals(mode)){
                 Jeu jeu = new Jeu(init);
-                jeu.lancerLeJeu();
+                try {
+                    jeu.lancerLeJeu();
+                } catch (ExceptionQuitter ex) {
+                    System.out.println("Merci d'avoir joué.e!");
+                }
             } else if ("A*".equals(mode)){
                 SolveurSniper s = new SolveurSniper(init);
                 EtatPlateau sol = s.solve();
