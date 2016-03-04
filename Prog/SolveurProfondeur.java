@@ -34,8 +34,8 @@ class ManhattanComparator implements Comparator<EtatPlateau> {
     
     @Override
     public int compare(EtatPlateau etat1, EtatPlateau etat2) {
-        int manE1 = etat1.getMeilleurScoreManatthan();
-        int manE2 = etat2.getMeilleurScoreManatthan();
+        int manE1 = etat1.getScoreManatthan();
+        int manE2 = etat2.getScoreManatthan();
         
         if(manE1 < manE2){
             return -1;
