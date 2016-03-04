@@ -45,8 +45,8 @@ public class SolveurVertical extends Solveur {
             generation(etatCourant);
 
             testSolution(etatCourant);
-
-            if (pile.isEmpty()) { // on vérifie que ce n'est pas fini
+            if (solution != null) { 
+            //if (pile.isEmpty()) { // on vérifie que ce n'est pas fini
                 algoEnCours = false;
             }
 
