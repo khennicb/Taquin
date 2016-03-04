@@ -2,6 +2,8 @@ package Prog.IHM;
 
 import Prog.EtatPlateau;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Console implements IHM {
     Scanner input;
@@ -15,16 +17,44 @@ public class Console implements IHM {
     public void afficherEtat(EtatPlateau etat) {
         System.out.println("- Etat " + etat.getHauteur() + " : " + etat.getListeMouvements());
         
+        System.out.print("╔════");
         for(int[] ligne : etat.getListeTuiles()) {
-            System.out.print("- (\t");
+            System.out.print("══════");
+        }
+        System.out.print("╗\n");
+        
+        for(int[] ligne : etat.getListeTuiles()) {
+            System.out.print("║    ");
             for(int tuile : ligne) {
-                System.out.print(tuile+"\t");
+                if(tuile <= 9)
+                    System.out.print(" "+tuile+"    ");
+                else
+                    System.out.print(tuile+"    ");
             }
-            System.out.print(")\n");
+            System.out.print("║\n");
         }
         
-        System.out.println("------");
-        System.out.println("");
+        System.out.print("╚════");
+        for(int[] ligne : etat.getListeTuiles()) {
+            System.out.print("══════");
+        }
+        System.out.println("╝");
+    }
+    
+    public void animate(EtatPlateau etat1, EtatPlateau etat2) {
+        int delai = 200;
+        try {
+            clean();
+            afficherEtat(etat1);
+            Thread.sleep(delai);
+            
+            Thread.sleep(delai);
+            
+            Thread.sleep(delai);
+            clean();
+            afficherEtat(etat2);
+            Thread.sleep(delai);
+        } catch (InterruptedException ex) {}
     }
     
     public void afficheEtatFinal(EtatPlateau etat){

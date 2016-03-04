@@ -20,9 +20,9 @@ public class MainNico {
         */
         
         int[][] debut = {
-            {1, 2, 3},
-            {4, 5, 0},
-            {7, 8, 6}
+            {4, 3, 8},
+            {2, 1, 0},
+            {7, 6, 5}
         };
         
         int[][] fin = {
@@ -38,7 +38,17 @@ public class MainNico {
         
         SolveurSniper r = new SolveurSniper(IHM);
         
-        r.solve(init, end);
+        EtatPlateau resultat = r.solve(init, end);
+        if(resultat != null){
+            char[] cl = resultat.getListeMouvements().toCharArray();
+            EtatPlateau current = init;
+            EtatPlateau suivant;
+            for (int i = 0; i < cl.length; i++) {
+                suivant = current.getEtatPlateauApresAction(Deplacement.fromChar(cl[i]));
+                if(suivant != null) ((Console)IHM).animate(current, suivant);
+                current = suivant;
+            }
+        }
         
     }
     
