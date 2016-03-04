@@ -69,7 +69,6 @@ public class Jeu {
             } while (!depPossible);
             
             etat = etat.getEtatPlateauApresAction(deplacement);
-            
         }
         
         out.felication(etat);
