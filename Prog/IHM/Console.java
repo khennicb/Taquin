@@ -1,6 +1,8 @@
 package Prog.IHM;
 
+import Prog.Deplacement;
 import Prog.EtatPlateau;
+import Prog.SolveurSniper;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +51,22 @@ public class Console implements IHM {
         System.out.println("╝");
     }
     
+    public void replayEtat(EtatPlateau etat, EtatPlateau init){
+        if(etat != null){
+            char[] cl = etat.getListeMouvements().toCharArray();
+            EtatPlateau current = init;
+            EtatPlateau suivant;
+            for (int i = 0; i < cl.length; i++) {
+                suivant = current.getEtatPlateauApresAction(Deplacement.fromChar(cl[i]));
+                if(suivant != null) animate(current, suivant);
+                current = suivant;
+            }
+        }
+    }
+    
+    
     public void animate(EtatPlateau etat1, EtatPlateau etat2) {
+        // Devrait animer un déplacement entre l'état1 et l'état2
         int delai = 200;
         
         try {
@@ -101,10 +118,15 @@ public class Console implements IHM {
         return waitForUser();
     }
     
-    public void felication(EtatPlateau etat){
+    public void felication(EtatPlateau etat, EtatPlateau etatInit){
         clean();
         afficherEtat(etat);
         System.out.println("Bravo ! Vous avez gagné.e !");
+        System.out.println("");
+        System.out.println("Solution optimal : ");
+        SolveurSniper solv = new SolveurSniper(etatInit);
+        EtatPlateau etatOptimal = solv.solve();
+        System.out.println("nombre de coups : " + etatOptimal.getHauteur() + ", chemin : " + etatOptimal.getListeMouvements());
     }
     
     public void afficheMessage(String txt){
