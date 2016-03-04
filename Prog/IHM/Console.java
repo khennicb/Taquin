@@ -35,9 +35,9 @@ public class Console implements IHM {
             System.out.print("║    ");
             for(int tuile : ligne) {
                 if(tuile <= 9)
-                    System.out.print(" "+tuile+"    ");
+                    System.out.print(" "+(tuile==0 ? " " : tuile)+"    ");
                 else
-                    System.out.print(tuile+"    ");
+                    System.out.print((tuile==0 ? "  " : tuile)+"    ");
             }
             System.out.print("║\n");
         }
@@ -51,20 +51,10 @@ public class Console implements IHM {
     
     public void animate(EtatPlateau etat1, EtatPlateau etat2) {
         int delai = 200;
-        int e1x0;
-        int e1y0;
-        int e2x0;
-        int e2y0;
-        
-        
         
         try {
             clean();
             afficherEtat(etat1);
-            Thread.sleep(delai);
-            
-            Thread.sleep(delai);
-            
             Thread.sleep(delai);
             clean();
             afficherEtat(etat2);
