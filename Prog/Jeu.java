@@ -48,7 +48,7 @@ public class Jeu {
             boolean depPossible;
             
             do {                
-                int d = out.listen();
+                String d = out.listen();
                 
                 if (d.equalsIgnoreCase("8")) {
                     deplacement = Deplacement.Haut;

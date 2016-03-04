@@ -84,7 +84,7 @@ public class Main {
         if (map==null){
             File file = new File(pathData);
             File[] files = file.listFiles();
-            System.out.println("Quel carte voulez-vous choisir : Taper un nombre ou le nom (dans le dossier "+pathData+") ? ");
+            System.out.println("Quel carte voulez-vous choisir : Taper un nombre ou le nom du fichier (dans le dossier "+pathData+") ? ");
             for (i=0;i<files.length;i++){
                 System.out.println(i+" - "+files[i].getName());
             }
