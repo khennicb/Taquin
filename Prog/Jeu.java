@@ -69,10 +69,10 @@ public class Jeu {
                     EtatPlateau solution = solve();
                     out.afficheSolution(solution);
                     d = out.waitForUser();
-                }else if(d.equalsIgnoreCase("next") || d.equalsIgnoreCase("suivant")){
+                }/*else if(d.equalsIgnoreCase("next") || d.equalsIgnoreCase("suivant")){
                     EtatPlateau solution = solve();
                     
-                }
+                }*/
                 
                 checkForQuit(d);
                 
