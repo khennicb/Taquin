@@ -50,7 +50,8 @@ public class Console implements IHM {
         String d = input.nextLine();
         while(!d.equalsIgnoreCase("8") && !d.equalsIgnoreCase("6") && !d.equalsIgnoreCase("2") && !d.equalsIgnoreCase("4") &&
                 !d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d") &&
-                !d.equalsIgnoreCase("quit") && !d.equalsIgnoreCase("quitter") && !d.equalsIgnoreCase("exit")) {
+                !d.equalsIgnoreCase("quit") && !d.equalsIgnoreCase("quitter") && !d.equalsIgnoreCase("exit") && 
+                !d.equalsIgnoreCase("help") && !d.equalsIgnoreCase("aide")) {
             System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: 2, 4, 6, 8 et z, q, s, d");
             d = input.nextLine();
         }
@@ -59,12 +60,12 @@ public class Console implements IHM {
     }
     
     public String waitForUser(){
-        System.out.println("Cliquez sur entrée pour lancer le jeu : ");
+        System.out.println("Cliquez sur entrée pour continuer : ");
         String d = input.nextLine();
         return d;
     }
     
-    public void getExplications(EtatPlateau etat){
+    public String getExplications(EtatPlateau etat){
         System.out.println("Bonjour. Voici l'état courant de votre grille : ");
         afficherEtat(etat);
         System.out.println("Le but du jeu est d'arriver à cette état final : ");
@@ -75,9 +76,11 @@ public class Console implements IHM {
         System.out.println("Entrez \"4\" ou \"Q\" pour que la case à droite du 0 se déplace vers la gauche et remplace le 0.");
         System.out.println("Entrez \"6\" ou \"D\" pour que la case à gauche du 0 se déplace vers la droite et remplace le 0.");
         System.out.println("");
-        System.out.println("Vous pouvez quitter à tout moment en tapant \"quitter\"");
+        System.out.println("Vous pouvez quitter à tout moment en tapant \"quitter\". Pour demander de l'aide, tapez \"help\".");
         System.out.println("");
         System.out.print("Vous êtes pret ? ");
+        
+        return waitForUser();
     }
     
     public void felication(EtatPlateau etat){

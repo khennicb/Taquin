@@ -24,20 +24,17 @@ public class Jeu {
     }
     
     public void lancerLeJeu(){
-        out.getExplications(etat);
-        
         Solveur s = new Solveur(etat);
         if (!s.estSolvable()) {
             out.afficheMessage("Cette grille n'est pas solvable.");
             return;
         }
         
-        String wait = out.waitForUser();
+        String wait = out.getExplications(etat);
         if (wait.equalsIgnoreCase("quit") || wait.equalsIgnoreCase("quitter") || wait.equalsIgnoreCase("exit")) {
             return;
         }
                
-        
         while (!etat.estFinal()) {
             out.clean();
             
@@ -56,12 +53,17 @@ public class Jeu {
                     deplacement = Deplacement.Gauche;
                 } else if(d.equalsIgnoreCase("6") || d.equalsIgnoreCase("d")) {
                     deplacement = Deplacement.Droite;
-                } else {
+                } else if (wait.equalsIgnoreCase("quit") || wait.equalsIgnoreCase("quitter") || wait.equalsIgnoreCase("exit")){
                     return;
+                }else{
+                    wait = out.getExplications(etat);
+                    if (wait.equalsIgnoreCase("quit") || wait.equalsIgnoreCase("quitter") || wait.equalsIgnoreCase("exit")) {
+                        return;
+                    }
                 }
                 
                 depPossible = etat.deplacementPossible(deplacement);
-                if (!depPossible) {
+                if (!depPossible && !d.equalsIgnoreCase("help") && !d.equalsIgnoreCase("aide")) {
                     out.afficheMessage("Ce déplacement est impossible.");
                 }
             } while (!depPossible);
