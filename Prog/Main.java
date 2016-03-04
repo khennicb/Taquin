@@ -3,19 +3,20 @@ package Prog;
 import Prog.IHM.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
     
     public static void main(String[] args) {   
         final String pathData = "Data";
+        final String pathReport = "Report";
         ArrayList<String> modeJeux = new ArrayList();
-        modeJeux.add("Jouer à la main");
-        modeJeux.add("Résolution avec A*");
-        modeJeux.add("Résolution en profondeur");
+        modeJeux.add("Jeux");
+        modeJeux.add("A*");
+        modeJeux.add("Profondeur");
+        modeJeux.add("Rapport");
         //Ajouter Modification est modifier le if a la ligne 118
         
         EntreeSortieFichier fichier;
@@ -102,7 +103,7 @@ public class Main {
             }
         }
         
-        fichier = new EntreeSortieFichier(pathData);
+        fichier = new EntreeSortieFichier(pathData,pathReport);
         try {
             plateau = fichier.readPlateau(map);
         } catch (FileNotFoundException ex) {
@@ -119,11 +120,7 @@ public class Main {
         if (solveur.estSolvable()) {
             if ("Jeux".equals(mode)){
                 Jeu jeu = new Jeu(init);
-                try {
-                    jeu.lancerLeJeu();
-                } catch (ExceptionQuitter ex) {
-                    System.out.println("Merci d'avoir joué.e!");
-                }
+                jeu.lancerLeJeu();
             } else if ("A*".equals(mode)){
                 SolveurSniper s = new SolveurSniper(init);
                 EtatPlateau sol = s.solve();
