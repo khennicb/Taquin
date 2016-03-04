@@ -32,13 +32,17 @@ public class Jeu {
             return;
         }
         
-        out.waitForUser();
-                        
+        String wait = out.waitForUser();
+        if (wait.equalsIgnoreCase("quit") || wait.equalsIgnoreCase("quitter") || wait.equalsIgnoreCase("exit")) {
+            return;
+        }
+               
+        
         while (!etat.estFinal()) {
             out.clean();
             
             out.afficherEtat(etat);
-            Deplacement deplacement;
+            Deplacement deplacement = Deplacement.Bas;
             boolean depPossible;
             
             do {                
@@ -50,8 +54,10 @@ public class Jeu {
                     deplacement = Deplacement.Bas;
                 } else if (d.equalsIgnoreCase("4") || d.equalsIgnoreCase("q")) {
                     deplacement = Deplacement.Gauche;
-                } else {
+                } else if(d.equalsIgnoreCase("6") || d.equalsIgnoreCase("d")) {
                     deplacement = Deplacement.Droite;
+                } else {
+                    return;
                 }
                 
                 depPossible = etat.deplacementPossible(deplacement);

@@ -23,5 +23,7 @@ public class MainNono {
         
         Jeu jeu = new Jeu(test1);
         jeu.lancerLeJeu();
+        
+        System.out.println("Merci d'avoir joué.e!");
     }
 }

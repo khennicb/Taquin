@@ -48,7 +48,9 @@ public class Console implements IHM {
         System.out.println("");
         
         String d = input.nextLine();
-        while(!d.equalsIgnoreCase("8") && !d.equalsIgnoreCase("6") && !d.equalsIgnoreCase("2") && !d.equalsIgnoreCase("4") && !d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d")) {
+        while(!d.equalsIgnoreCase("8") && !d.equalsIgnoreCase("6") && !d.equalsIgnoreCase("2") && !d.equalsIgnoreCase("4") &&
+                !d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d") &&
+                !d.equalsIgnoreCase("quit") && !d.equalsIgnoreCase("quitter") && !d.equalsIgnoreCase("exit")) {
             System.out.println("Déplacement impossible. Veuillez saisir une lettre parmi: 2, 4, 6, 8 et z, q, s, d");
             d = input.nextLine();
         }
@@ -56,9 +58,10 @@ public class Console implements IHM {
         return d;
     }
     
-    public void waitForUser(){
+    public String waitForUser(){
         System.out.println("Cliquez sur entrée pour lancer le jeu : ");
-        input.nextLine();
+        String d = input.nextLine();
+        return d;
     }
     
     public void getExplications(EtatPlateau etat){
@@ -71,6 +74,8 @@ public class Console implements IHM {
         System.out.println("Entrez \"2\" ou \"S\" pour que la case au dessus du 0 descende et remplace le 0.");
         System.out.println("Entrez \"4\" ou \"Q\" pour que la case à droite du 0 se déplace vers la gauche et remplace le 0.");
         System.out.println("Entrez \"6\" ou \"D\" pour que la case à gauche du 0 se déplace vers la droite et remplace le 0.");
+        System.out.println("");
+        System.out.println("Vous pouvez quitter à tout moment en tapant \"quitter\"");
         System.out.println("");
         System.out.print("Vous êtes pret ? ");
     }
