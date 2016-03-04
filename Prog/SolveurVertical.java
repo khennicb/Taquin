@@ -12,37 +12,75 @@ import java.util.Stack;
  * @author ben
  */
 public class SolveurVertical {
-    
+
+    HashmapEtats map;
     Stack<EtatPlateau> pile;
     EtatPlateau solution;
     boolean algoEnCours;
-    
+
     public SolveurVertical() {
         pile = new Stack<>();
         solution = null;
     }
-    
-    public EtatPlateau solve(EtatPlateau etatInit){
-        
+
+    public EtatPlateau solve(EtatPlateau etatInit) {
+
         algoEnCours = true;
+        pile.push(etatInit);
+        EtatPlateau etatCourant;
         
-        while (algoEnCours){
-         
+        while (algoEnCours) {
+            etatCourant = pile.pop();
 
+            generation(etatCourant);
 
+            testSolution(etatCourant);
 
-
-
-
-            
-            if (pile.isEmpty())
+            if (pile.isEmpty()) { // on vérifie que ce n'est pas fini
                 algoEnCours = false;
+            }
 
         }
-            
-        return null;
+
+        return solution;
     }
-    
-    
-    
+
+    /* Ajoute dans la pile les fils de e qui sont admissibles
+     *  admissible = peut devenir une meilleure solution
+     *
+     */
+    private int generation(EtatPlateau e) {
+        // si cette etat ne peut pas devenir une meilleure solution
+        if (solution != null && e.getScoreManatthan() >= solution.getScoreManatthan()) {
+            return 0;
+        }
+        int count = 0;
+
+        EtatPlateau etatGenere;
+        for (Deplacement d : Deplacement.values()) {
+            etatGenere = e.getEtatPlateauApresAction(d);
+
+            // si le déplacement est possible et l'état généré est admissible
+            if (etatGenere != null && map.add(etatGenere)) {
+                pile.push(etatGenere);
+                count++;
+            }
+        }
+
+        return 0;
+    }
+
+    private boolean testSolution(EtatPlateau e) {
+        if (e.estFinal()) {
+            if (solution != null && e.getScoreManatthan() > solution.getScoreManatthan()) {
+                System.err.println("SolveurVertical : Erreur au test d'une solution.  Une solution non admissible est parvenu à la methode testSolution");
+                return false;
+            } else {
+                solution = e;
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
 }
