@@ -96,6 +96,7 @@ public class SolveurVertical extends Solveur {
                 return false;
             } else {
                 solution = e;
+                super.Solution=e.getListeMouvements();
                 return true;
             }
         } else {

@@ -96,9 +96,9 @@ public class EntreeSortieFichier {
         fw.write("Longueur de la solution    : "+solveurs[0].getLongueurSolution()+"\n\n");
         
         for(Solveur s : solveurs){
-            fw.write("Algorithme                 : "+s.getSolution()+"\n");
+            fw.write("Algorithme                 : "+s.getNomAlgo()+"\n");
             fw.write("Temps CPU en ms            : "+((double)s.getTempsCPUNS()/(double)1000000)+"\n");
-            fw.write("Nombre de sommets visité   : "+s.getSolution()+"\n");
+            fw.write("Nombre de sommets visité   : "+s.getNbSommetsVisite()+"\n");
             fw.write("Taille max de la structure : "+s.getTailleMax()+"\n\n");
         }
         fw.flush();

@@ -131,6 +131,16 @@ public class Main {
                 EtatPlateau sol = s.solve();
                 c.replayEtat(sol, init);
                 //System.out.println("la solution est : " + sol.getListeMouvements());
+            } else if ("Rapport".equals(mode)){
+                Solveur[] solveurs = {new SolveurSniper(init), new SolveurVertical(init)};
+                for (Solveur s : solveurs){
+                    s.solve();
+                }
+                try {
+                    fichier.writeResult(solveurs, map, map);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         } else {
             System.out.println("Le jeu n'est pas réalisable");
