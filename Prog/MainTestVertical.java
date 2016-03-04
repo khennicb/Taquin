@@ -1,4 +1,3 @@
-
 package Prog;
 
 import java.io.FileNotFoundException;
@@ -19,7 +18,7 @@ public class MainTestVertical {
         
         EtatPlateau etatInitial= new EtatPlateau("", eInit, eFinal);
         
-        SolveurVertical solveur = new SolveurVertical(etatInitial);
+        SolveurBazooka solveur = new SolveurBazooka(etatInitial);
         EtatPlateau sol = solveur.solve();
         
         System.out.println("la solution est : " + sol.getListeMouvements());
