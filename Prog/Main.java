@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -12,11 +13,11 @@ public class Main {
     public static void main(String[] args) {   
         final String pathData = "Data";
         final String pathReport = "Report";
-        ArrayList<String> modeJeux = new ArrayList();
-        modeJeux.add("Jeux");
-        modeJeux.add("A*");
-        modeJeux.add("Profondeur");
-        modeJeux.add("Rapport");
+        HashMap<String,String> modeJeux = new HashMap();
+        modeJeux.put("Jouer","jeux");
+        modeJeux.put("Résoudre avec A*","a*");
+        modeJeux.put("Résoudre en Profondeur","profondeur");
+        modeJeux.put("Générer un Rapport","rapport");
         //Ajouter Modification est modifier le if a la ligne 118
         
         EntreeSortieFichier fichier;
@@ -34,11 +35,11 @@ public class Main {
         while (i<args.length){
             if("-m".equals(args[i])){
                 i++;
-                if (i<args.length && args[i].length()>0 && args[i].charAt(0)!='-' && modeJeux.contains(args[i])){
+                if (i<args.length && args[i].length()>0 && args[i].charAt(0)!='-' && modeJeux.containsValue(args[i])){
                     mode = args[i];
                 } else {
                     String chaine = "Syntaxe : -m {";
-                    for(String s : modeJeux){
+                    for(String s : modeJeux.values()){
                         chaine+=s+"|";
                     }
                     chaine = chaine.substring(0, chaine.length()-1)+"}";
@@ -55,7 +56,7 @@ public class Main {
                 }
             } else {
                 String chaine = "Syntaxe : -m {";
-                for(String s : modeJeux){
+                for(String s : modeJeux.values()){
                     chaine+=s+"|";
                 }
                 chaine = chaine.substring(0, chaine.length()-1)+"}";
@@ -68,8 +69,12 @@ public class Main {
         
         if (mode==null){
             System.out.println("Que voulez-vous faire ? ");
-            for (i=0;i<modeJeux.size();i++){
-                System.out.println(i+" - "+modeJeux.get(i));
+            ArrayList<String> list = new ArrayList();
+            i=0;
+            for (String s : modeJeux.keySet()){
+                System.out.println(i+" - "+s);
+                list.add(modeJeux.get(s));
+                i++;
             }
             int choixNombre;
             do {
@@ -77,14 +82,14 @@ public class Main {
                 try {
                     choixNombre = Integer.valueOf(choix);
                 } catch (NumberFormatException e){
-                    System.out.println("Choisir un nombre entre 0 et "+(modeJeux.size()-1));
+                    System.out.println("Choisir un nombre entre 0 et "+(list.size()-1));
                     choixNombre=-1;
                 }
-                if (choixNombre<0 || choixNombre>=modeJeux.size()){
-                    System.out.println("Choisir un nombre entre 0 et "+(modeJeux.size()-1));
+                if (choixNombre<0 || choixNombre>=list.size()){
+                    System.out.println("Choisir un nombre entre 0 et "+(list.size()-1));
                 }
-            } while (choixNombre<0 || choixNombre>=modeJeux.size()); 
-            mode = modeJeux.get(choixNombre);
+            } while (choixNombre<0 || choixNombre>=list.size()); 
+            mode = list.get(choixNombre);
         }
         if (map==null){
             File file = new File(pathData);
@@ -118,20 +123,22 @@ public class Main {
         Console c = new Console();
         
         if (solveur.estSolvable()) {
-            if ("Jeux".equals(mode)){
+            if ("jeux".equals(mode)){
                 Jeu jeu = new Jeu(init);
-                jeu.lancerLeJeu();
-            } else if ("A*".equals(mode)){
+                try {
+                    jeu.lancerLeJeu();
+                } catch (ExceptionQuitter ex) {}
+            } else if ("a*".equals(mode)){
                 SolveurSniper s = new SolveurSniper(init);
                 EtatPlateau sol = s.solve();
                 c.replayEtat(sol, init);
                 //System.out.println("la solution est : " + sol.getListeMouvements());
-            } else if ("Profondeur".equals(mode)){
+            } else if ("profondeur".equals(mode)){
                 SolveurVertical s = new SolveurVertical(init);
                 EtatPlateau sol = s.solve();
                 c.replayEtat(sol, init);
                 //System.out.println("la solution est : " + sol.getListeMouvements());
-            } else if ("Rapport".equals(mode)){
+            } else if ("rapport".equals(mode)){
                 Solveur[] solveurs = {new SolveurSniper(init), new SolveurVertical(init)};
                 for (Solveur s : solveurs){
                     s.solve();
