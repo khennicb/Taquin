@@ -60,16 +60,6 @@ public class Jeu {
                     deplacement = Deplacement.Droite;
                 }
                 
-                /*if (d.equalsIgnoreCase("z")) {
-                    deplacement = Deplacement.Haut;
-                } else if (d.equalsIgnoreCase("s")) {
-                    deplacement = Deplacement.Bas;
-                } else if (d.equalsIgnoreCase("q")) {
-                    deplacement = Deplacement.Gauche;
-                } else {
-                    deplacement = Deplacement.Droite;
-                }*/
-                
                 depPossible = etat.deplacementPossible(deplacement);
                 if (!depPossible) {
                     out.afficheMessage("Ce déplacement est impossible.");
