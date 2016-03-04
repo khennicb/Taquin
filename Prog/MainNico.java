@@ -36,7 +36,7 @@ public class MainNico {
         
         IHM IHM = new Console();
         
-        SolveurSniper r = new SolveurSniper(IHM);
+        SolveurSniper r = new SolveurSniper();
         
         EtatPlateau resultat = r.solve(init, end);
         if(resultat != null){

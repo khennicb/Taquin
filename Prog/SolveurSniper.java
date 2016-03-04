@@ -5,14 +5,8 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class SolveurSniper {
-    private final IHM sortie;
 
-    public SolveurSniper(IHM sortie) {
-        this.sortie = sortie;
-    }
-    
     public EtatPlateau solve(EtatPlateau init, EtatPlateau fin){
-        //Stack<EtatPlateau> listeFermee = new Stack<>();
         
         ManhattanComparator comp = new ManhattanComparator();
         PriorityQueue<EtatPlateau> listeOuverte = new PriorityQueue<>(comp);
@@ -21,9 +15,6 @@ public class SolveurSniper {
         
         while(!listeOuverte.isEmpty()){
             EtatPlateau current = listeOuverte.poll();
-            
-            System.out.println("f() = g() + h() = "+current.getG()+" + "+current.getH()+" = "+current.getF());
-            if(sortie!=null) sortie.afficherEtat(current);
             
             if(current.toHashKey().equals(fin.toHashKey())){
                 return current;
