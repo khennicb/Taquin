@@ -4,6 +4,11 @@ import Prog.EtatPlateau;
 import java.util.Scanner;
 
 public class Console implements IHM {
+    Scanner input;
+    
+    public Console(){
+        input = new Scanner(System.in);
+    }
        
 
     @Override
@@ -39,7 +44,6 @@ public class Console implements IHM {
     
     
     public String listen(){
-        Scanner input = new Scanner(System.in);
         System.out.println("");
         String d = input.nextLine();
         while(!d.equalsIgnoreCase("z") && !d.equalsIgnoreCase("q") && !d.equalsIgnoreCase("s") && !d.equalsIgnoreCase("d")) {
@@ -52,8 +56,7 @@ public class Console implements IHM {
     }
     
     public void waitForUser(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Cliquez sur entreée pour lancer le jeu : ");
+        System.out.println("Cliquez sur entrée pour lancer le jeu : ");
         input.nextLine();
     }
     
