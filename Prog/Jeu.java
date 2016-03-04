@@ -26,20 +26,24 @@ public class Jeu {
     public void lancerLeJeu(){
         out.getExplications();
         
-        System.out.println("Etat Initial : ");
+        out.afficheMessage("Etat Initial : ");
         out.afficherEtat(etat);
         
-        System.out.println("Etat Final :");
+        
         out.afficheEtatFinal(etat);
-        System.out.println("");
         
         Solveur s = new Solveur(tabFinal, etat.getListeTuiles());
         if (!s.estSolvable()) {
-            System.out.println("Cette grille n'est pas solvable.");
+            out.afficheMessage("Cette grille n'est pas solvable.");
             return;
         }
+        
+        out.waitForUser();
                         
         while (!etat.estFinal()) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            
             out.afficherEtat(etat);
             
             String d = out.listen();
@@ -53,10 +57,11 @@ public class Jeu {
             if (etat.deplacementPossible(deplacement)) {
                 etat = etat.getEtatPlateauApresAction(deplacement); 
             }else{
-                System.out.println("Ce déplacement est impossible.");
+                out.afficheMessage("Ce déplacement est impossible.");
             }
+            
         }
         
-        System.out.println("Bravo ! Vous avez gagné.e !");
+        out.felication();
     }
 }
