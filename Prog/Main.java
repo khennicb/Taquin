@@ -70,11 +70,11 @@ public class Main {
             System.out.println("Fichier au mauvais format");
             return;
         }
-        EtatPlateau e = new EtatPlateau("", plateau[0], plateau[1]);
-        solveur = new Solveur(e);
+        
+        EtatPlateau ep  = new EtatPlateau("", plateau[0], plateau[1]);
+        solveur = new Solveur(ep);
         if (solveur.estSolvable()) {
             if (jeux==true){
-                EtatPlateau ep = new EtatPlateau("", plateau[0], plateau[1]);
                 Jeu jeu = new Jeu(ep);
                 jeu.lancerLeJeu();
             } else {
