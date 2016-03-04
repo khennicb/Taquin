@@ -182,7 +182,9 @@ public class EtatPlateau {
                     for (int j = 0; j < listeTuiles.length; j++) {
                         // une fois trouvé, on ajoute au cout sa distance par rapport à sa place final.
                         if (etatFinal[col][ligne] == listeTuiles[i][j]) {
-                            cout = cout + Math.abs(j - i);
+                            cout = cout + Math.abs(ligne - i);
+                            cout = cout + Math.abs(col - j);
+                            
                         }
 
                     }
@@ -207,6 +209,20 @@ public class EtatPlateau {
             }
         }
         return s;
+    }
+    
+    public void affiche() {
+        System.out.println("- Etat " + this.getHauteur() + " : " + this.getListeMouvements());
+        
+        for(int[] ligne : this.getListeTuiles()) {
+            System.out.print("- (\t");
+            for(int tuile : ligne) {
+                System.out.print(tuile+"\t");
+            }
+            System.out.print(")\n");
+        }
+        
+        System.out.println("------");
     }
 
 }

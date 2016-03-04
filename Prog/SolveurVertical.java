@@ -31,6 +31,8 @@ public class SolveurVertical {
         
         while (algoEnCours) {
             etatCourant = pile.pop();
+            
+            etatCourant.affiche();
 
             generation(etatCourant);
 
