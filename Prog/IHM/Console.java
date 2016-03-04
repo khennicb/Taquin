@@ -108,8 +108,8 @@ public class Console implements IHM {
         System.out.println("Bravo ! Vous avez gagné.e !");
         System.out.println("");
         System.out.println("Solution optimal : ");
-        SolveurSniper solv = new SolveurSniper();
-        EtatPlateau etatOptimal = solv.solve(etatInit, etat);
+        SolveurSniper solv = new SolveurSniper(etatInit);
+        EtatPlateau etatOptimal = solv.solve();
         System.out.println("nombre de coups : " + etatOptimal.getHauteur() + ", chemin : " + etatOptimal.getListeMouvements());
     }
     
